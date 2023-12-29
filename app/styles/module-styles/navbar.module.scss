@@ -1,0 +1,92 @@
+@import "../styleHlp/variables.scss";
+@import "../styleHlp/mixins.scss";
+.logoSearchContainer {
+  width: 500px;
+  //   border: 2px solid #fff;
+  ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-size: 50px;
+    }
+    input {
+      width: 250px;
+      height: 60px;
+      border-radius: 50px;
+      background-color: $secondary;
+      color: $border-fill;
+      border: 0px solid transparent;
+      text-indent: 60px;
+      //fix him up later
+
+      &::placeholder {
+        font-size: 14px;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    svg {
+      fill: $placeholder;
+      position: absolute;
+      margin-top: 18px;
+      margin-left: 18px;
+      //   display: block;
+      //   margin: auto;
+    }
+  }
+}
+
+.productContainer {
+  width: 650px;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    li {
+      font-size: 25px;
+      position: relative;
+      cursor: pointer;
+      &::after {
+        content: "";
+        bottom: 0px;
+        left: 0px;
+        width: 0px;
+        height: 3px;
+        background-color: $orange;
+        position: absolute;
+        transition: width 250ms linear;
+      }
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.orderContainer {
+  width: 275px;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .btnOne {
+      @include button-default;
+      background-color: $secondary;
+      border: 2px solid $border-fill;
+    }
+    .btnTwo {
+      @include button-default;
+      border: 2px solid $orange;
+      background-color: transparent;
+    }
+  }
+}

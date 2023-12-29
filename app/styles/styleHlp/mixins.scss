@@ -1,0 +1,22 @@
+@import "./variables.scss";
+@mixin button-default {
+  width: 120px;
+  height: 60px;
+  border-radius: 10px;
+  color: $text;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    //Make more advanced hover effect
+    background-color: rgb(50, 155, 145);
+    transition: all 200ms linear;
+  }
+}
+
+@mixin article-eff {
+  &:hover {
+    background-color: $hover-color;
+    cursor: pointer;
+  }
+}
