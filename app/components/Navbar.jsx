@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "../styles/module-styles/navbar.module.scss"
-
+import Link from "next/link"
 const navbar = () => {
   return (
     <>
@@ -8,7 +8,9 @@ const navbar = () => {
         <div className={styles.logoSearchContainer}>
           <ul>
             <li>
-              <h1>SwiftCart</h1>
+              <Link href="/home">
+                <h1>SwiftCart</h1>
+              </Link>
             </li>
             <li>
               <svg
@@ -26,11 +28,21 @@ const navbar = () => {
         </div>
         <div className={styles.productContainer}>
           <ul>
-            <li>Home</li>
-            <li>Men</li>
-            <li>Woman</li>
-            <li>Jewelery</li>
-            <li>Electornics</li>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/#men">Men</Link>
+            </li>
+            <li>
+              <Link href="/#women">Women</Link>
+            </li>
+            <li>
+              <Link href="/#jewlery">Jewlery</Link>
+            </li>
+            <li>
+              <Link href="/#electronics">Electronics</Link>
+            </li>
           </ul>
         </div>
         <div className={styles.orderContainer}>

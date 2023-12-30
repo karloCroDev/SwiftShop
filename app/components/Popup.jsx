@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react"
 import style from "../styles/module-styles/popup.module.scss"
+import Link from "next/link"
 const Popup = () => {
   //When I push to production change this to false and alo uncomment it
   const [state, setState] = useState(true)
@@ -18,8 +19,12 @@ const Popup = () => {
             You like our products, then sign up/ sign in :)
           </h2>
           <div className={style.btnContainer}>
-            <button className={style.btn1}>Sign up</button>
-            <button className={style.btn2}>Sign in</button>
+            <Link href="/signup">
+              <button className={style.btn1}>Sign up</button>
+            </Link>
+            <Link href="/signin">
+              <button className={style.btn2}>Sign in</button>
+            </Link>
           </div>
         </div>
       </aside>

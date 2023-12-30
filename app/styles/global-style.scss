@@ -5,15 +5,19 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth !important;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding: 150px;
+}
 body {
   background-color: $primary-background;
   color: $text;
   width: 100%;
   overflow: hidden;
   overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 h1 {
@@ -29,6 +33,13 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  ///temporary fix, fix this right way
+  position: fixed;
+  left: 50%;
+  top: 70px;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: $primary-background;
 }
 
 li {
@@ -41,6 +52,7 @@ main {
   position: relative;
   display: flex;
   justify-content: center;
+  scroll-behavior: smooth;
 }
 
 aside {
@@ -71,4 +83,9 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+//Link
+a {
+  all: unset;
 }

@@ -1,0 +1,130 @@
+@import "../styleHlp/variables.scss";
+
+.align {
+  display: grid;
+  place-items: center;
+  .nav {
+    width: 90%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    li {
+      h1 {
+        font-size: 50px;
+      }
+      svg {
+        width: 100px;
+        height: 100px;
+        fill: $text;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.formSign,
+.formSignTwo {
+  width: 450px;
+  height: 550px;
+  border: 2px solid $secondary;
+  border-radius: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    h2 {
+      font-size: 40px;
+      font-family: $title-sec;
+    }
+    h4 {
+      font-family: $title-sec;
+      font-size: 30px;
+    }
+  }
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    label {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 300px;
+      height: 45px;
+      border-radius: 5px;
+      background-color: $secondary;
+      border: 0px;
+      text-indent: 10px;
+      color: $border-fill;
+      margin-bottom: 10px;
+      &:focus {
+        outline: none;
+      }
+      // &:first-of-type {
+      //   margin-bottom: 10px;
+      // }
+    }
+  }
+  .final {
+    button {
+      width: 300px;
+      height: 60px;
+      border: none;
+      border-radius: 8px;
+      color: $border-fill;
+      font-size: 18px;
+      background-color: #334756;
+      margin-bottom: 25px;
+      margin-top: -25px;
+      cursor: pointer;
+      transition: background-color 200ms ease-in;
+      &:hover {
+        background-color: $hover-color;
+      }
+    }
+    p {
+      font-family: $title-sec;
+      font-size: 24px;
+      text-align: center;
+    }
+    span {
+      color: $orange;
+      font-family: $title-sec;
+      position: relative;
+      cursor: pointer;
+      &:after {
+        content: "";
+        width: 0;
+        height: 2px;
+        background-color: $orange;
+        position: absolute;
+        left: 8px;
+        bottom: 0;
+        transition: width 250ms linear;
+      }
+      &:hover:after {
+        width: 90%;
+      }
+    }
+  }
+}
+
+.formSignTwo {
+  height: 640px;
+  width: 500px;
+}
