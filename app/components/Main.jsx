@@ -18,7 +18,7 @@ const Main = () => {
         console.log(data)
         setProducts(data)
       }
-      getProducts()
+      // getProducts()
     } catch (error) {
       console.error(error)
     }
@@ -44,10 +44,15 @@ const Main = () => {
         </h2>
         <div className={style.row}>
           {men.map((itm) => {
+            const arrStr = itm.title.split(" ")
+            const title =
+              arrStr.length > 6
+                ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
+                : arrStr.join(" ")
             return (
               <article>
                 <img src={itm.image} alt="Image of the product" />
-                <h3>Product:{itm.title}</h3>
+                <h3>Product: {title}</h3>
                 <h3>Price: {itm.price}$</h3>
               </article>
             )
@@ -59,10 +64,15 @@ const Main = () => {
 
         <div className={style.row}>
           {women.map((itm) => {
+            const arrStr = itm.title.split(" ")
+            const title =
+              arrStr.length > 6
+                ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
+                : arrStr.join(" ")
             return (
               <article>
                 <img src={itm.image} alt="Image of the product" />
-                <h3>Product:{itm.title}</h3>
+                <h3>Product: {title}</h3>
                 <h3>Price: {itm.price}$</h3>
               </article>
             )
@@ -73,10 +83,15 @@ const Main = () => {
         </h2>
         <div className={style.row}>
           {jewlery.map((itm) => {
+            const arrStr = itm.title.split(" ")
+            const title =
+              arrStr.length > 6
+                ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
+                : arrStr.join(" ")
             return (
               <article>
                 <img src={itm.image} alt="Image of the product" />
-                <h3>Product:{itm.title}</h3>
+                <h3>Product: {title}</h3>
                 <h3>Price: {itm.price}$</h3>
               </article>
             )
@@ -87,10 +102,15 @@ const Main = () => {
         </h2>
         <div className={style.row}>
           {electronics.map((itm) => {
+            const arrStr = itm.title.split(" ")
+            const title =
+              arrStr.length > 6
+                ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
+                : arrStr.join(" ")
             return (
               <article>
                 <img src={itm.image} alt="Image of the product" />
-                <h3>Product:{itm.title}</h3>
+                <h3>Product: {title}</h3>
                 <h3>Price: {itm.price}$</h3>
               </article>
             )

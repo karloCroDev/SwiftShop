@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google"
 import "./styles/global-style.scss"
+import FirebseAuthContext from "./components/contextes/FirebseAuthContext.jsx"
+import LogicContext from "./components/contextes/LogicContext.jsx"
 // import Navbar from "./components/Navbar"
 const inter = Inter({ subsets: ["latin"] })
 
@@ -13,7 +15,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         {/* <Navbar />  Adding later, after I make state managment*/}
-        {children}
+        <LogicContext>
+          <FirebseAuthContext>{children}</FirebseAuthContext>
+        </LogicContext>
       </body>
     </html>
   )

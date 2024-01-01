@@ -15,8 +15,21 @@
 }
 
 @mixin article-eff {
+  &:hover:after {
+    content: "Click to see more details 🔗";
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+  }
   &:hover {
-    background-color: $hover-color;
+    background-color: rgb(50, 155, 145);
     cursor: pointer;
   }
+}
+
+@mixin hr {
+  background-color: black;
+  height: 4px;
+  border-radius: 2px;
+  width: 325px;
 }

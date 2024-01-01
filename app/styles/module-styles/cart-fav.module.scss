@@ -1,0 +1,119 @@
+@import "../styleHlp/mixins.scss";
+@import "../styleHlp/variables.scss";
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $hover-color;
+  z-index: 99999;
+}
+.cartContainer {
+  width: 500px;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background-color: whitesmoke;
+  z-index: 99999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $secondary;
+
+  * {
+    font-family: $title-sec;
+    // font-size: ;
+  }
+  h1 {
+    font-size: 40px;
+    font-family: $title-fam;
+  }
+  header {
+    height: 300px;
+    width: 300px;
+    // border: 2px solid $secondary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: $secondary;
+      object-fit: contain;
+    }
+    hr {
+      @include hr;
+    }
+  }
+
+  .favContainer {
+    width: 400px;
+    // margin-top: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    button {
+      margin-top: -15px;
+      width: 250px;
+      height: 60px;
+      border-radius: 8px;
+      font-size: 20px;
+      background-color: $whitesmoke;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-size: 35px;
+      svg {
+        height: 30px;
+        width: 30px;
+      }
+    }
+    div {
+      width: 250px;
+      height: 340px;
+      border-radius: 8px;
+      background-color: $whitesmoke;
+      border: 2px solid $secondary;
+      margin-top: 20px;
+    }
+
+    hr {
+      @include hr;
+      margin-top: 30px;
+      width: 400px;
+      height: 3px;
+    }
+  }
+  .buy {
+    // margin-top: 20px;
+    width: 350px;
+    height: 75px;
+    background-color: $whitesmoke;
+    font-size: 30px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-size: 40px;
+    &:hover {
+      cursor: pointer;
+      border: none;
+      color: $whitesmoke;
+      background-color: rgb(50, 155, 145);
+      transition: all 250ms linear;
+    }
+  }
+}
+
+.marginTop {
+  margin-top: 40px;
+}
+
+.hide {
+  display: none;
+}

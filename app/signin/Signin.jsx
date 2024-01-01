@@ -1,14 +1,24 @@
 "use client"
-import React from "react"
+import React, { useContext, useState } from "react"
 import style from "../styles/module-styles/auth.module.scss"
 import Link from "next/link"
+import { AuthContext } from "../components/contextes/FirebseAuthContext.jsx"
+import { useRouter } from "next/navigation"
+
 const Signin = () => {
+  const { signIn } = useContext(AuthContext)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const router = useRouter()
   return (
     <>
       <div className={style.align}>
         <ul className={style.nav}>
           <li>
-            <h1>SwiftCart</h1>
+            <Link href="/">
+              <h1>SwiftCart</h1>
+            </Link>
           </li>
           <li>
             <Link href="/">
@@ -26,19 +36,35 @@ const Signin = () => {
         </ul>
       </div>
       <div>
-        <form onSubmit={() => e.preventDefault()} className={style.formSign}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault()
+            signIn(email, password)
+            router.push("/")
+            // window.location.reload()
+          }}
+          className={style.formSign}
+        >
           <div className={style.infoContainer}>
             <h2>Welcome back to SwiftCart</h2>
             <h4>The best place to shop</h4>
           </div>
           <div className={style.inputContainer}>
             <label htmlFor="email">Email:</label>
-            <input type="text" id="email" placeholder="Enter your email..." />
+            <input
+              type="text"
+              id="email"
+              placeholder="Enter your email..."
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
             <label htmlFor="password">Password:</label>
             <input
               type="password"
               id="password"
               placeholder="Enetr your password..."
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <div className={style.final}>

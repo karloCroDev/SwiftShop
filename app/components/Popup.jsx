@@ -1,19 +1,24 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import style from "../styles/module-styles/popup.module.scss"
 import Link from "next/link"
+// import { AuthContext } from "./contextes/FirebseAuthContext.jsx"
+import { LogicContx } from "./contextes/LogicContext.jsx"
+
 const Popup = () => {
+  const { showPopup, setShowPopup } = useContext(LogicContx)
+
   //When I push to production change this to false and alo uncomment it
-  const [state, setState] = useState(true)
+  // const [state, setState] = useState(true)
 
   // useEffect(() => {
   //   setTimeout(() => {
-  //     setState(true)
+  //     setShowPopup(true)
   //   }, 15000)
   // }, [])
   return (
     <>
-      <aside className={state ? style.show : style.hide}>
+      <aside className={showPopup ? style.show : style.hide}>
         <div className={style.container}>
           <h2 className={style.title}>
             You like our products, then sign up/ sign in :)

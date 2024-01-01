@@ -1,14 +1,25 @@
 "use client"
-import React from "react"
+import React, { useContext, useState } from "react"
 import style from "../styles/module-styles/auth.module.scss"
 import Link from "next/link"
+import { AuthContext } from "../components/contextes/FirebseAuthContext.jsx"
+import { useRouter } from "next/navigation"
+
 const Signup = () => {
+  const { signUp } = useContext(AuthContext)
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const router = useRouter()
   return (
     <>
       <div className={style.align}>
         <ul className={style.nav}>
           <li>
-            <h1>SwiftCart</h1>
+            <Link href="/">
+              <h1>SwiftCart</h1>
+            </Link>
           </li>
           <li>
             <Link href="/">
@@ -26,7 +37,21 @@ const Signup = () => {
         </ul>
       </div>
       <div>
-        <form onSubmit={() => e.preventDefault()} className={style.formSignTwo}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault()
+            if (username.length >= 4 && username.length <= 12) {
+              signUp(username, email, password)
+              router.push("/")
+              window.location.reload
+            } else {
+              alert(
+                "Your username must contain atleast 4 charchters and maximum of 12  "
+              )
+            }
+          }}
+          className={style.formSignTwo}
+        >
           <div className={style.infoContainer}>
             <h2>Welcome to SwiftCart</h2>
             <h4>The best place to shop</h4>
@@ -37,14 +62,25 @@ const Signup = () => {
               type="text"
               id="email"
               placeholder="Enter your username..."
+              onChange={(e) => setUsername(e.target.value)}
+              required
             />
             <label htmlFor="email">Email:</label>
-            <input type="text" id="email" placeholder="Enter your email..." />
+
+            <input
+              type="text"
+              id="email"
+              placeholder="Enter your email..."
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
             <label htmlFor="password">Password:</label>
             <input
               type="password"
               id="password"
               placeholder="Enetr your password..."
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <div className={style.final}>

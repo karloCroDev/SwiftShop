@@ -27,18 +27,18 @@ h1 {
 nav {
   margin-left: auto;
   margin-right: auto;
-  width: 1600px;
+  width: 1200px;
   height: 150px;
   // background-color: $orange;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   ///temporary fix, fix this right way
   position: fixed;
   left: 50%;
   top: 70px;
   transform: translate(-50%, -50%);
-  z-index: 9999;
+  z-index: $nav-z-indx;
   background-color: $primary-background;
 }
 

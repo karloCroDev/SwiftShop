@@ -44,15 +44,18 @@
     margin-top: 20px;
     display: grid;
     grid-template-columns: auto auto;
+    grid-template-rows: 600px 600px;
     justify-content: space-between;
 
     article {
       width: 380px;
-      height: 500px;
+      height: 550px;
       border-radius: 10px;
       transition: background-color 250ms ease-in-out;
       display: flex;
       flex-direction: column;
+      position: relative;
+      background-color: $hover-color;
       img {
         object-fit: contain;
         width: 380px;
