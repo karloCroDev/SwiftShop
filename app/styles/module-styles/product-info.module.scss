@@ -1,0 +1,75 @@
+@import "../styleHlp/variables.scss";
+@import "../styleHlp/mixins.scss";
+.productInfo {
+  position: absolute;
+  height: calc(100% - 150px);
+  width: 100%;
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  img {
+    height: 700px;
+    width: 1000px;
+    background-color: $text;
+    border-radius: 20px;
+    object-fit: contain;
+  }
+
+  section {
+    height: 300px;
+    width: 1000px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+
+    * {
+      font-family: $title-sec;
+      font-size: 30px;
+    }
+    h1 {
+      font-size: 50px;
+      font-weight: bold;
+    }
+    .mainInfo {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      h2 {
+        font-size: 30px;
+        font-weight: bold;
+        font-family: $text-fam;
+      }
+      .btnContainer {
+        width: 350px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .addToCart,
+      .addToFavorites {
+        width: 150px;
+        height: 70px;
+        border-radius: 8px;
+        background-color: transparent;
+        color: $text;
+        border: 2px solid #fff;
+
+        @include button-effect;
+        transition: background-color 250ms;
+      }
+
+      .addToFavorites {
+        width: 180px;
+        border: 2px solid $orange;
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react"
 import style from "../styles/module-styles/main.module.scss"
+import Link from "next/link"
 const Main = () => {
   const [products, setProducts] = useState([])
 
@@ -18,7 +19,7 @@ const Main = () => {
         console.log(data)
         setProducts(data)
       }
-      // getProducts()
+      getProducts()
     } catch (error) {
       console.error(error)
     }
@@ -50,11 +51,13 @@ const Main = () => {
                 ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
                 : arrStr.join(" ")
             return (
-              <article>
-                <img src={itm.image} alt="Image of the product" />
-                <h3>Product: {title}</h3>
-                <h3>Price: {itm.price}$</h3>
-              </article>
+              <Link href={`/home/${itm.id}`}>
+                <article>
+                  <img src={itm.image} alt="Image of the product" />
+                  <h3>Product: {title}</h3>
+                  <h3>Price: {itm.price}$</h3>
+                </article>
+              </Link>
             )
           })}
         </div>
@@ -70,11 +73,13 @@ const Main = () => {
                 ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
                 : arrStr.join(" ")
             return (
-              <article>
-                <img src={itm.image} alt="Image of the product" />
-                <h3>Product: {title}</h3>
-                <h3>Price: {itm.price}$</h3>
-              </article>
+              <Link href={`/home/${itm.id}`}>
+                <article>
+                  <img src={itm.image} alt="Image of the product" />
+                  <h3>Product: {title}</h3>
+                  <h3>Price: {itm.price}$</h3>
+                </article>
+              </Link>
             )
           })}
         </div>
@@ -89,11 +94,13 @@ const Main = () => {
                 ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
                 : arrStr.join(" ")
             return (
-              <article>
-                <img src={itm.image} alt="Image of the product" />
-                <h3>Product: {title}</h3>
-                <h3>Price: {itm.price}$</h3>
-              </article>
+              <Link href={`/home/${itm.id}`}>
+                <article>
+                  <img src={itm.image} alt="Image of the product" />
+                  <h3>Product: {title}</h3>
+                  <h3>Price: {itm.price}$</h3>
+                </article>
+              </Link>
             )
           })}
         </div>
@@ -108,11 +115,13 @@ const Main = () => {
                 ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
                 : arrStr.join(" ")
             return (
-              <article>
-                <img src={itm.image} alt="Image of the product" />
-                <h3>Product: {title}</h3>
-                <h3>Price: {itm.price}$</h3>
-              </article>
+              <Link href={`/home/${itm.id}`}>
+                <article>
+                  <img src={itm.image} alt="Image of the product" />
+                  <h3>Product: {title}</h3>
+                  <h3>Price: {itm.price}$</h3>
+                </article>
+              </Link>
             )
           })}
         </div>

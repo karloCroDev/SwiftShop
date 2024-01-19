@@ -2,7 +2,8 @@ import { Inter } from "next/font/google"
 import "./styles/global-style.scss"
 import FirebseAuthContext from "./components/contextes/FirebseAuthContext.jsx"
 import LogicContext from "./components/contextes/LogicContext.jsx"
-// import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
@@ -14,9 +15,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {/* <Navbar />  Adding later, after I make state managment*/}
         <LogicContext>
-          <FirebseAuthContext>{children}</FirebseAuthContext>
+          <FirebseAuthContext>
+            <Navbar></Navbar>
+            {/* This is rendering twice so make sure to fic  */}
+            {children}
+            {/* {children} */}
+          </FirebseAuthContext>
         </LogicContext>
       </body>
     </html>
