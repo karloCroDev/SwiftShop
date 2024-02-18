@@ -37,11 +37,10 @@ const Signin = () => {
       </div>
       <div>
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault()
-            signIn(email, password)
+            await signIn(email, password)
             router.push("/")
-            // window.location.reload()
           }}
           className={style.formSign}
         >
@@ -62,7 +61,7 @@ const Signin = () => {
             <input
               type="password"
               id="password"
-              placeholder="Enetr your password..."
+              placeholder="Enter your password..."
               onChange={(e) => setPassword(e.target.value)}
               required
             />

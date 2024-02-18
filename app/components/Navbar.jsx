@@ -18,56 +18,10 @@ const navbar = () => {
   }
   return (
     <>
-      <div className={styles.mainElements}>
+      <nav>
         <Link href="/">
           <h1>SwiftCart</h1>
         </Link>
-        {authName !== "" ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            data-name="Flat Line"
-            viewBox="0 0 24 24"
-            onClick={() => {
-              signOutUsr()
-              window.location.reload()
-              alert("You are logged out!")
-            }}
-          >
-            <path
-              d="m18 9 3 3-3 3"
-              style={{
-                fill: "none",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeWidth: 2,
-              }}
-            />
-            <path
-              d="m13 9 3 3-3 3M16 12H7"
-              data-name="primary"
-              style={{
-                fill: "none",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeWidth: 2,
-              }}
-            />
-            <path
-              d="M14 19v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v1"
-              data-name="primary"
-              style={{
-                fill: "none",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeWidth: 2,
-              }}
-            />
-          </svg>
-        ) : (
-          <div></div> //Don't remove this div because of space-between
-        )}
-      </div>
-      <nav>
         <ul className={styles.ul}>
           <li>
             <svg
@@ -109,6 +63,47 @@ const navbar = () => {
             </button>
           </li>
         </ul>
+        {authName !== "" ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            data-name="Flat Line"
+            viewBox="0 0 24 24"
+            className="signOut"
+            onClick={signOutUsr}
+          >
+            <path
+              d="m18 9 3 3-3 3"
+              style={{
+                fill: "none",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+              }}
+            />
+            <path
+              d="m13 9 3 3-3 3M16 12H7"
+              data-name="primary"
+              style={{
+                fill: "none",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+              }}
+            />
+            <path
+              d="M14 19v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v1"
+              data-name="primary"
+              style={{
+                fill: "none",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeWidth: 2,
+              }}
+            />
+          </svg>
+        ) : (
+          <div></div> //Don't remove this div because of space-between
+        )}
       </nav>
     </>
   )

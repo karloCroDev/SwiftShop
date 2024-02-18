@@ -13,7 +13,7 @@ const page = () => {
         <Main />
         <Popup />
       </main>
-      <CartFav />
+      {/* <CartFav /> */}
       <Footer />
     </>
   )

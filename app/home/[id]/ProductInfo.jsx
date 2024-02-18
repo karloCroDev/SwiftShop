@@ -9,10 +9,12 @@ const ProductInfo = () => {
   return (
     <>
       <div className={style.productInfo}>
-        <img src={itemDetails?.image} alt="Product image" />
         <section>
-          <h1>Title:{itemDetails?.title}</h1>
-          <p>Description: {itemDetails?.description}</p>
+          <img src={itemDetails?.image} alt="Product image" />
+          <h1>{itemDetails?.title}</h1>
+          <p>
+            <b>Description:</b> {itemDetails?.description}.
+          </p>
           <div className={style.mainInfo}>
             <h2>Price: {itemDetails?.price}$</h2>
             <div className={style.btnContainer}>

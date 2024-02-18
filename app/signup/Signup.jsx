@@ -3,7 +3,6 @@ import React, { useContext, useState } from "react"
 import style from "../styles/module-styles/auth.module.scss"
 import Link from "next/link"
 import { AuthContext } from "../components/contextes/FirebseAuthContext.jsx"
-import { useRouter } from "next/navigation"
 
 const Signup = () => {
   const { signUp } = useContext(AuthContext)
@@ -11,7 +10,6 @@ const Signup = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const router = useRouter()
   return (
     <>
       <div className={style.align}>
@@ -38,12 +36,10 @@ const Signup = () => {
       </div>
       <div>
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault()
             if (username.length >= 4 && username.length <= 12) {
-              signUp(username, email, password)
-              router.push("/")
-              window.location.reload
+              await signUp(username, email, password)
             } else {
               alert(
                 "Your username must contain atleast 4 charchters and maximum of 12  "
@@ -78,7 +74,7 @@ const Signup = () => {
             <input
               type="password"
               id="password"
-              placeholder="Enetr your password..."
+              placeholder="Enter your password..."
               onChange={(e) => setPassword(e.target.value)}
               required
             />

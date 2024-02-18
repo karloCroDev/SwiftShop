@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import ProductInfo from "./ProductInfo.jsx"
 import { LogicContx } from "@/app/components/contextes/LogicContext.jsx"
-
+import Navbar from "@/app/components/Navbar.jsx"
 const page = ({ params }) => {
   const { setItemDetails } = useContext(LogicContx)
   useEffect(() => {
@@ -23,6 +23,7 @@ const page = ({ params }) => {
   return (
     <>
       {/* <h1>Title: {item.title}</h1> */}
+      <Navbar />
       <ProductInfo />
     </>
   )

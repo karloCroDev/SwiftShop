@@ -1,7 +1,8 @@
 "use client"
 
 import React, { createContext, useContext, useEffect, useState } from "react"
-import { auth } from "../firebase/Firebase.js"
+import { auth, db } from "../firebase/Firebase.js"
+import { useRouter, usePathname } from "next/navigation.js"
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -11,14 +12,15 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth"
+import { addDoc, collection, doc, setDoc } from "firebase/firestore"
 
 export const AuthContext = createContext()
 
 const FirebseAuthContext = ({ children }) => {
   ///Traditional way with no providers
+  const { push } = useRouter()
   const [authName, setAuthName] = useState("")
   const [authImage, setAuthImage] = useState("")
-
   const images = [
     "https://i.postimg.cc/SQcxrzJW/meerkat.png",
     "https://i.postimg.cc/DzccLz1F/giraffe.png",
@@ -29,7 +31,6 @@ const FirebseAuthContext = ({ children }) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user.displayName, user.photoURL)
-
         setAuthName(user.displayName)
         setAuthImage(user.photoURL)
       } else {
@@ -37,6 +38,27 @@ const FirebseAuthContext = ({ children }) => {
       }
     })
   }, [])
+
+  //Create userCollecton with Document
+  const createCND = async (username, email) => {
+    try {
+      await addDoc(collection(db, username), {
+        dateOrder: [],
+        cart: [],
+        favorites: [],
+        address: "",
+        emailAddress: email,
+      })
+      push("/")
+      setTimeout(() => {
+        window.location.reload()
+        //Next time when you have time for projects don't do dumb stuff like this please
+      }, 500)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  //User Auth
   const signIn = async (email, password) => {
     try {
       const signInUser = await signInWithEmailAndPassword(auth, email, password)
@@ -57,20 +79,27 @@ const FirebseAuthContext = ({ children }) => {
         displayName: username,
         photoURL: images[Math.floor(Math.random() * images.length)], //code for random image
       })
+      await createCND(username, email)
     } catch (error) {
       console.error(error)
-      alert("Your email is invalid or already exists :/")
+      alert("Invalid sign up please try again!")
     }
   }
   const signOutUsr = async () => {
     try {
-      const signOutUser = await signOut(auth)
-      console.log("Succesful sign out ")
+      await signOut(auth)
+      push("/signin")
+      setTimeout(() => {
+        window.location.reload()
+        //Next time when you have time for projects don't do this dumb stuff please
+      }, 500)
+      alert("You are logged out successfuly")
     } catch (error) {
       alert("Wrong email or password :/")
       console.error(error)
     }
   }
+
   // signOutUsr()
   ////Providers
   // const googleSignIn = async () => {

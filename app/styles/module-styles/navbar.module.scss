@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 1200px;
   height: 100%;
 
   //   border: 2px solid #fff;
@@ -70,19 +70,7 @@
   border: 2px solid $orange;
   background-color: transparent;
   margin-left: -20px;
-}
 
-.mainElements {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 50px;
-  z-index: $nav-z-indx;
   h1 {
     font-size: 50px;
     cursor: pointer;
