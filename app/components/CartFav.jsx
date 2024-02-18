@@ -4,6 +4,7 @@ import React, { useContext, useRef, useState } from "react"
 import style from "../styles/module-styles/cart-fav.module.scss"
 import { AuthContext } from "./contextes/FirebseAuthContext.jsx"
 import { LogicContx } from "./contextes/LogicContext.jsx"
+import CartItem from "./CartItem"
 
 const CartFav = () => {
   //Getting data from state
@@ -11,43 +12,14 @@ const CartFav = () => {
   const { closeCart, setCloseCart } = useContext(LogicContx)
   console.log(authName, authImage)
 
-  //Move this component as soon as possible
-  const LittleComp = () => {
-    const [countItem, setCountItem] = useState(1)
-    const itemRef = useRef()
-    const [doesElEx, setDoesElEx] = useState(true)
+  const favContainer = useRef()
+  const cartContainer = useRef()
 
-    return doesElEx ? (
-      <div
-        className={style.prodItem}
-        onDoubleClick={() => {
-          setDoesElEx(false)
-        }}
-      >
-        <div className={style.img}></div>
-        <h3 className={style.title}>
-          Men<span>..</span>
-        </h3>
-        <div className={style.quantity}>
-          <button
-            className={style.count}
-            onClick={() => setCountItem(countItem - 1)}
-          >
-            -
-          </button>
-          <h2>{countItem}</h2>
-          <button
-            className={style.count}
-            onClick={() => setCountItem(countItem + 1)}
-          >
-            +
-          </button>
-        </div>
-        <h3>500$</h3>
-      </div>
-    ) : null
+  //Use DND
+  const appendElems = (e, container) => {
+    e.preventDefault()
+    container.append(document.querySelector(`.${style.dragging}`))
   }
-
   return (
     <>
       <div
@@ -97,12 +69,15 @@ const CartFav = () => {
               />
             </svg>
           </button>
-          <div className={style.favBlock}>
-            <LittleComp />
-            <LittleComp />
-            <LittleComp />
-            <LittleComp />
-            <LittleComp />
+          <div
+            className={style.favBlock}
+            ref={favContainer}
+            onDragOver={(e) => appendElems(e, favContainer.current)}
+          >
+            <CartItem />
+            <CartItem />
+            <CartItem />
+            <CartItem />
           </div>
           <hr />
         </div>
@@ -138,7 +113,11 @@ const CartFav = () => {
               />
             </svg>
           </button>
-          <div className={`${style.favBlock} ${style.gBtn}`}></div>
+          <div
+            className={`${style.favBlock} }`}
+            ref={cartContainer}
+            onDragOver={(e) => appendElems(e, cartContainer.current)}
+          ></div>
         </div>
         <button className={style.buy}>Buy!!!!</button>
       </div>

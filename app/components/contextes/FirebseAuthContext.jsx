@@ -43,11 +43,10 @@ const FirebseAuthContext = ({ children }) => {
   const createCND = async (username, email) => {
     try {
       await addDoc(collection(db, username), {
-        dateOrder: [],
+        username: username,
+        emailAddress: email,
         cart: [],
         favorites: [],
-        address: "",
-        emailAddress: email,
       })
       push("/")
       setTimeout(() => {

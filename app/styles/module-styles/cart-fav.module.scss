@@ -134,8 +134,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  *:not(.img) {
+  z-index: 99;
+
+  // cursor: pointer;
+  * {
     font-family: $text-fam;
+    z-index: 2;
   }
   h3 {
     font-size: 25px;
@@ -172,4 +176,9 @@
       line-height: 25px;
     }
   }
+}
+
+.dragging {
+  opacity: 0.6;
+  cursor: pointer !important;
 }

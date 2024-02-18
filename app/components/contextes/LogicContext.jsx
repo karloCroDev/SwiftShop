@@ -1,5 +1,5 @@
 "use client"
-import React, { createContext, useState } from "react"
+import React, { createContext, useRef, useState } from "react"
 
 export const LogicContx = createContext()
 
@@ -8,6 +8,8 @@ const LogicContext = ({ children }) => {
   const [closeCart, setCloseCart] = useState(false)
 
   const [itemDetails, setItemDetails] = useState({})
+
+  //CartFavContainerToAppend
 
   return (
     <>
