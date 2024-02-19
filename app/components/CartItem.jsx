@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react"
 import style from "../styles/module-styles/cart-fav.module.scss"
 import { LogicContx } from "./contextes/LogicContext"
-const CartItem = () => {
+
+/////////
+const CartItem = ({ image, title, quantity, price }) => {
   const [countItem, setCountItem] = useState(1)
 
   const [doesElEx, setDoesElEx] = useState(true)
@@ -12,19 +14,13 @@ const CartItem = () => {
       onDoubleClick={() => {
         setDoesElEx(false)
       }}
-      draggable="true"
-      onDragStart={(e) => {
-        e.target.classList.add(style.dragging)
 
-        //This prevents user from dragging text instead of item, I'ce got this classname from devTools(because of sass)
-      }}
-      onDragEnd={(e) => {
-        e.target.classList.remove(style.dragging)
-      }}
+      //This prevents user from dragging text instead of item, I'ce got this classname from devTools(because of sass)
     >
-      <div className={style.img}></div>
+      <img src={image} />
       <h3 className={style.title}>
-        Men<span>..</span>
+        {title.substring(0, 4)}
+        <span>..</span>
       </h3>
       <div className={style.quantity}>
         <button
@@ -33,7 +29,7 @@ const CartItem = () => {
         >
           -
         </button>
-        <h2>{countItem}</h2>
+        <h2>{quantity}</h2>
         <button
           className={style.count}
           onClick={() => setCountItem(countItem + 1)}
@@ -41,7 +37,7 @@ const CartItem = () => {
           +
         </button>
       </div>
-      <h3>500$</h3>
+      <h3>{price}$</h3>
     </div>
   ) : null
 }

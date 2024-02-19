@@ -5,21 +5,14 @@ import style from "../styles/module-styles/cart-fav.module.scss"
 import { AuthContext } from "./contextes/FirebseAuthContext.jsx"
 import { LogicContx } from "./contextes/LogicContext.jsx"
 import CartItem from "./CartItem"
+import { FirestoreContext } from "./contextes/FirebaseFirestoreContext"
 
 const CartFav = () => {
   //Getting data from state
   const { authName, authImage } = useContext(AuthContext)
   const { closeCart, setCloseCart } = useContext(LogicContx)
-  console.log(authName, authImage)
-
-  const favContainer = useRef()
-  const cartContainer = useRef()
-
-  //Use DND
-  const appendElems = (e, container) => {
-    e.preventDefault()
-    container.append(document.querySelector(`.${style.dragging}`))
-  }
+  const { data } = useContext(FirestoreContext)
+  console.log(data[0]?.map((x) => x.title))
   return (
     <>
       <div
@@ -69,15 +62,15 @@ const CartFav = () => {
               />
             </svg>
           </button>
-          <div
-            className={style.favBlock}
-            ref={favContainer}
-            onDragOver={(e) => appendElems(e, favContainer.current)}
-          >
-            <CartItem />
-            <CartItem />
-            <CartItem />
-            <CartItem />
+          <div className={style.favBlock}>
+            {data[0]?.map((items) => (
+              <CartItem
+                image={items.image.stringValue}
+                title={items.title.stringValue}
+                quantity={items.quantity.stringValue}
+                price={Math.round(items.price.doubleValue)}
+              />
+            ))}
           </div>
           <hr />
         </div>
@@ -113,11 +106,16 @@ const CartFav = () => {
               />
             </svg>
           </button>
-          <div
-            className={`${style.favBlock} }`}
-            ref={cartContainer}
-            onDragOver={(e) => appendElems(e, cartContainer.current)}
-          ></div>
+          <div className={`${style.favBlock} }`}>
+            {data[1]?.map((items) => (
+              <CartItem
+                image={items.image.stringValue}
+                title={items.title.stringValue}
+                quantity={items.quantity.stringValue}
+                price={items.price.doubleValue}
+              />
+            ))}
+          </div>
         </div>
         <button className={style.buy}>Buy!!!!</button>
       </div>

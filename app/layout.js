@@ -16,16 +16,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <FirebaseFirestoreContext>
+        <FirebseAuthContext>
           <LogicContext>
-            <FirebseAuthContext>
+            <FirebaseFirestoreContext>
               {/* <Navbar></Navbar> */}
               {/* This is rendering twice so make sure to fix */}
               {children}
               <CartFav />
-            </FirebseAuthContext>
+            </FirebaseFirestoreContext>
           </LogicContext>
-        </FirebaseFirestoreContext>
+        </FirebseAuthContext>
       </body>
     </html>
   )

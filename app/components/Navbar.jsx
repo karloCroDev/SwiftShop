@@ -9,7 +9,13 @@ import { useRouter } from "next/navigation"
 const navbar = () => {
   //Contexes
   const { authName, signOutUsr } = useContext(AuthContext)
-  const { setCloseCart } = useContext(LogicContx)
+  const {
+    setCloseCart,
+    cartChangeColor,
+    favChangeColor,
+    setCartChangeColor,
+    setFavChangeColor,
+  } = useContext(LogicContx)
 
   //Routers
   const router = useRouter()
@@ -53,12 +59,30 @@ const navbar = () => {
           </li>
 
           <li>
-            <button className={styles.btnOne} onClick={checkIfUserExists}>
+            <button
+              className={`${styles.btnOne} ${
+                favChangeColor ? styles.green : null
+              }`}
+              onClick={() => {
+                checkIfUserExists()
+                setFavChangeColor(false)
+                setCartChangeColor(false)
+              }}
+            >
               Favorite
             </button>
           </li>
           <li>
-            <button className={styles.btnTwo} onClick={checkIfUserExists}>
+            <button
+              className={`${styles.btnTwo} ${
+                cartChangeColor ? styles.green : null
+              }`}
+              onClick={() => {
+                checkIfUserExists()
+                setFavChangeColor(false)
+                setCartChangeColor(false)
+              }}
+            >
               Cart
             </button>
           </li>

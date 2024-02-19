@@ -19,7 +19,9 @@ export const AuthContext = createContext()
 const FirebseAuthContext = ({ children }) => {
   ///Traditional way with no providers
   const { push } = useRouter()
+
   const [authName, setAuthName] = useState("")
+  const [authEmail, setAuthEmail] = useState("")
   const [authImage, setAuthImage] = useState("")
   const images = [
     "https://i.postimg.cc/SQcxrzJW/meerkat.png",
@@ -33,6 +35,7 @@ const FirebseAuthContext = ({ children }) => {
         console.log(user.displayName, user.photoURL)
         setAuthName(user.displayName)
         setAuthImage(user.photoURL)
+        setAuthEmail(user.email)
       } else {
         console.log("There is no user")
       }
@@ -40,11 +43,9 @@ const FirebseAuthContext = ({ children }) => {
   }, [])
 
   //Create userCollecton with Document
-  const createCND = async (username, email) => {
+  const createCND = async (email) => {
     try {
-      await addDoc(collection(db, username), {
-        username: username,
-        emailAddress: email,
+      await addDoc(collection(db, "not-ordered", email), {
         cart: [],
         favorites: [],
       })
@@ -78,7 +79,7 @@ const FirebseAuthContext = ({ children }) => {
         displayName: username,
         photoURL: images[Math.floor(Math.random() * images.length)], //code for random image
       })
-      await createCND(username, email)
+      await createCND(email)
     } catch (error) {
       console.error(error)
       alert("Invalid sign up please try again!")
@@ -120,6 +121,7 @@ const FirebseAuthContext = ({ children }) => {
           authName,
           authImage,
           signOutUsr,
+          authEmail,
         }}
       >
         {children}

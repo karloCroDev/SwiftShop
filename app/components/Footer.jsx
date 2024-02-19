@@ -3,8 +3,9 @@ import React, { useContext, useState } from "react"
 import style from "../styles/module-styles/footer.module.scss"
 import { AuthContext } from "./contextes/FirebseAuthContext"
 import { FirestoreContext } from "./contextes/FirebaseFirestoreContext"
+import { auth } from "./firebase/Firebase"
 const Footer = () => {
-  const { authName } = useContext(AuthContext)
+  const { authName, authEmail } = useContext(AuthContext)
   const { feedback } = useContext(FirestoreContext)
   const [email, setEmail] = useState("")
   const [content, setContent] = useState("")
@@ -44,9 +45,10 @@ const Footer = () => {
                 onChange={(e) => setContent(e.target.value)}
               ></textarea>
               <button
-                onClick={() =>
-                  feedback(authName !== "" ? authName : email, content)
-                }
+                onClick={async () => {
+                  await feedback(authEmail !== "" ? authEmail : email, content)
+                  setContent("")
+                }}
               >
                 Send{"->"}
               </button>

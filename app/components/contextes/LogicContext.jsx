@@ -9,8 +9,8 @@ const LogicContext = ({ children }) => {
 
   const [itemDetails, setItemDetails] = useState({})
 
-  //CartFavContainerToAppend
-
+  const [favChangeColor, setFavChangeColor] = useState(false)
+  const [cartChangeColor, setCartChangeColor] = useState(false)
   return (
     <>
       <LogicContx.Provider
@@ -21,6 +21,10 @@ const LogicContext = ({ children }) => {
           setCloseCart,
           itemDetails,
           setItemDetails,
+          favChangeColor,
+          setFavChangeColor,
+          cartChangeColor,
+          setCartChangeColor,
         }}
       >
         {children}
