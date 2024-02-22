@@ -44,14 +44,14 @@ const Main = () => {
           Men:
         </h2>
         <div className={style.row}>
-          {men.map((itm) => {
+          {men.map((itm, indx) => {
             const arrStr = itm.title.split(" ")
             const title =
               arrStr.length > 6
                 ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
                 : arrStr.join(" ")
             return (
-              <Link href={`/home/${itm.id}`}>
+              <Link href={`/home/${itm.id}`} key={indx}>
                 <article>
                   <img src={itm.image} alt="Image of the product" />
                   <h3>Product: {title}</h3>
@@ -66,14 +66,14 @@ const Main = () => {
         </h2>
 
         <div className={style.row}>
-          {women.map((itm) => {
+          {women.map((itm, indx) => {
             const arrStr = itm.title.split(" ")
             const title =
               arrStr.length > 6
                 ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
                 : arrStr.join(" ")
             return (
-              <Link href={`/home/${itm.id}`}>
+              <Link href={`/home/${itm.id}`} key={indx + 100}>
                 <article>
                   <img src={itm.image} alt="Image of the product" />
                   <h3>Product: {title}</h3>
@@ -87,14 +87,14 @@ const Main = () => {
           Jewlery:
         </h2>
         <div className={style.row}>
-          {jewlery.map((itm) => {
+          {jewlery.map((itm, indx) => {
             const arrStr = itm.title.split(" ")
             const title =
               arrStr.length > 6
                 ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
                 : arrStr.join(" ")
             return (
-              <Link href={`/home/${itm.id}`}>
+              <Link href={`/home/${itm.id}`} key={indx + 1000}>
                 <article>
                   <img src={itm.image} alt="Image of the product" />
                   <h3>Product: {title}</h3>
@@ -108,14 +108,14 @@ const Main = () => {
           Electronics:
         </h2>
         <div className={style.row}>
-          {electronics.map((itm) => {
+          {electronics.map((itm, indx) => {
             const arrStr = itm.title.split(" ")
             const title =
               arrStr.length > 6
                 ? arrStr.map((itm, i) => (i > 6 ? null : itm)).join(" ") + "..."
                 : arrStr.join(" ")
             return (
-              <Link href={`/home/${itm.id}`}>
+              <Link href={`/home/${itm.id}`} key={indx + 10000}>
                 <article>
                   <img src={itm.image} alt="Image of the product" />
                   <h3>Product: {title}</h3>

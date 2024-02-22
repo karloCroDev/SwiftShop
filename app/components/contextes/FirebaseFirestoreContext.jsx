@@ -1,5 +1,13 @@
 "use client"
-import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
+import {
+  FieldValue,
+  arrayUnion,
+  count,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore"
 import React, { createContext, useEffect, useContext, useState } from "react"
 import { db } from "../firebase/Firebase"
 import { AuthContext } from "./FirebseAuthContext"
@@ -40,20 +48,47 @@ const FirebaseFirestoreContext = ({ children }) => {
     const favorites =
       data._document?.data?.value?.mapValue?.fields?.favorites?.arrayValue
 
-    const cartVals = cart.values.map((x) => x.mapValue.fields)
-    const favoritesVals = favorites.values.map((x) => x.mapValue.fields)
+    const cartVals = cart?.values?.map((x) => x.mapValue.fields)
+    const favoritesVals = favorites?.values?.map((x) => x.mapValue.fields)
 
     setData([cartVals, favoritesVals])
+  }
+  const removeItem = async (category, title) => {
+    let count = "cart" ? 1 : 0
+    console.log(data[count])
+
+    let findIndex = data[count].findIndex(
+      (item) => item.title.stringValue === title
+    )
+    if (findIndex === -1) findIndex = 0
+    data[count].splice(findIndex, 1)
+
+    const newArr = data[count].map((items) => {
+      return {
+        title: items.title.stringValue,
+        image: items.image.stringValue,
+        quantity: items.quantity.integerValue,
+        price:
+          items.price.doubleValue !== undefined
+            ? Math.round(items.price.doubleValue)
+            : items.price.integerValue,
+      }
+    })
+
+    await updateDoc(doc(db, "not-ordered", authEmail), {
+      [category]: newArr,
+    })
   }
   useEffect(() => {
     if (authEmail !== "") {
       getData()
     }
   }, [authEmail, favChangeColor, cartChangeColor])
+
   return (
     <>
       <FirestoreContext.Provider
-        value={{ feedback, addToShopCart, addToFav, data }}
+        value={{ feedback, addToShopCart, addToFav, data, removeItem }}
       >
         {children}
       </FirestoreContext.Provider>

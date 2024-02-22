@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useContext, useRef, useState } from "react"
+import React, { useContext, useState } from "react"
 import style from "../styles/module-styles/cart-fav.module.scss"
 import { AuthContext } from "./contextes/FirebseAuthContext.jsx"
 import { LogicContx } from "./contextes/LogicContext.jsx"
@@ -12,7 +12,8 @@ const CartFav = () => {
   const { authName, authImage } = useContext(AuthContext)
   const { closeCart, setCloseCart } = useContext(LogicContx)
   const { data } = useContext(FirestoreContext)
-  console.log(data[0]?.map((x) => x.title))
+  // console.log(data[0]?.map((x) => x.title))
+  const IDhelper = 1000
   return (
     <>
       <div
@@ -63,12 +64,18 @@ const CartFav = () => {
             </svg>
           </button>
           <div className={style.favBlock}>
-            {data[0]?.map((items) => (
+            {data[1]?.map((items, indx) => (
               <CartItem
+                key={indx}
                 image={items.image.stringValue}
                 title={items.title.stringValue}
-                quantity={items.quantity.stringValue}
-                price={Math.round(items.price.doubleValue)}
+                quantity={items.quantity.integerValue}
+                price={
+                  items.price.doubleValue !== undefined
+                    ? Math.round(items.price.doubleValue)
+                    : items.price.integerValue
+                }
+                category={"favorites"}
               />
             ))}
           </div>
@@ -107,12 +114,18 @@ const CartFav = () => {
             </svg>
           </button>
           <div className={`${style.favBlock} }`}>
-            {data[1]?.map((items) => (
+            {data[0]?.map((items, indx) => (
               <CartItem
+                key={IDhelper + indx}
                 image={items.image.stringValue}
                 title={items.title.stringValue}
-                quantity={items.quantity.stringValue}
-                price={items.price.doubleValue}
+                quantity={items.quantity.integerValue}
+                price={
+                  items.price.doubleValue !== undefined
+                    ? Math.round(items.price.doubleValue)
+                    : items.price.integerValue
+                }
+                category={"cart"}
               />
             ))}
           </div>
