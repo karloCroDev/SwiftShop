@@ -6,10 +6,11 @@ import Navbar from "@/app/components/Navbar.jsx"
 const page = ({ params }) => {
   const { setItemDetails } = useContext(LogicContx)
   useEffect(() => {
+    console.log(params)
     const getUserInfo = async () => {
       try {
         const api = await fetch(
-          `https://fakestoreapi.com/products/${params.id}`
+          `https://fakestoreapi.com/products/${params.id}` //I wanted to use this because I could easily just pass data using props or smth like that but I wanted to show that id could be used too!
         )
         const data = await api.json()
         console.log(data)

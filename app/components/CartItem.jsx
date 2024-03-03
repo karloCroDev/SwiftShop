@@ -4,14 +4,14 @@ import { FirestoreContext } from "./contextes/FirebaseFirestoreContext"
 
 /////////
 const CartItem = ({ image, title, quantity, price, category }) => {
-  const { removeItem } = useContext(FirestoreContext)
-  const [countItem, setCountItem] = useState(1)
-  const [doesElEx, setDoesElEx] = useState(true)
+  const { removeItem, countItem, setCountItem } = useContext(FirestoreContext)
 
+  const [doesElEx, setDoesElEx] = useState(true)
+  console.log(quantity)
   return doesElEx ? (
     <div
       className={style.prodItem}
-      onDoubleClick={(e) => {
+      onDoubleClick={() => {
         setDoesElEx(false)
         removeItem(category, title)
       }}
@@ -38,7 +38,7 @@ const CartItem = ({ image, title, quantity, price, category }) => {
           +
         </button>
       </div>
-      <h3>{price}$</h3>
+      <h3 className={style.centerMe}>{price}$</h3>
     </div>
   ) : null
 }

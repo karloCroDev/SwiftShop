@@ -1,29 +1,23 @@
-"use client"
-import React, { useEffect, useState } from "react"
 import style from "../styles/module-styles/main.module.scss"
 import Link from "next/link"
-const Main = () => {
-  const [products, setProducts] = useState([])
+
+const getProducts = async () => {
+  try {
+    const api = await fetch("https://fakestoreapi.com/products")
+    return api.json()
+    // console.log(data)
+  } catch (error) {}
+}
+
+const Main = async () => {
+  const products = await getProducts()
 
   const men = products.filter((itm) => itm.category === "men's clothing")
   const women = products.filter((itm) => itm.category === "women's clothing")
   const jewlery = products.filter((itm) => itm.category === "jewelery")
   const electronics = products.filter((itm) => itm.category === "electronics")
   const itemOfTheWeek = products[Math.floor(Math.random() * products.length)]
-  // console.log(itemOfTheWeek)
-  useEffect(() => {
-    try {
-      const getProducts = async () => {
-        const api = await fetch("https://fakestoreapi.com/products")
-        const data = await api.json()
-        // console.log(data)
-        setProducts(data)
-      }
-      getProducts()
-    } catch (error) {
-      console.error(error)
-    }
-  }, [])
+
   return (
     <>
       <div className={style?.position}>

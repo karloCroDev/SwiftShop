@@ -6,7 +6,7 @@ import { LogicContx } from "@/app/components/contextes/LogicContext"
 import { FirestoreContext } from "@/app/components/contextes/FirebaseFirestoreContext"
 import { useRouter } from "next/navigation"
 const ProductInfo = () => {
-  const { itemDetails, setCartChangeColor, setFavChangeColor } =
+  const { itemDetails, setCartChangeColor, setFavChangeColor, countItem } =
     useContext(LogicContx)
   const { addToShopCart, addToFav, createCND, authUid } =
     useContext(FirestoreContext)
@@ -34,7 +34,7 @@ const ProductInfo = () => {
                           title: itemDetails?.title,
                           image: itemDetails?.image,
                           price: itemDetails?.price,
-                          quantity: 1,
+                          quantity: countItem,
                         })
                       }
                     : () => {
@@ -50,12 +50,11 @@ const ProductInfo = () => {
                   authUid
                     ? async () => {
                         setCartChangeColor(true)
-
                         addToShopCart({
                           title: itemDetails?.title,
                           image: itemDetails?.image,
                           price: itemDetails?.price,
-                          quantity: 1,
+                          quantity: countItem,
                         })
                       }
                     : () => {
