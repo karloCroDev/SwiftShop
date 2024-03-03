@@ -12,7 +12,7 @@ const page = ({ params }) => {
           `https://fakestoreapi.com/products/${params.id}`
         )
         const data = await api.json()
-        // console.log(data)
+        console.log(data)
         setItemDetails(data)
       } catch (error) {
         console.error(error)

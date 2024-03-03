@@ -33,7 +33,6 @@ const FirebaseFirestoreContext = ({ children }) => {
   }
 
   ///
-
   const createCND = async () => {
     try {
       const q = query(
@@ -43,7 +42,8 @@ const FirebaseFirestoreContext = ({ children }) => {
       console.log(q)
       console.log(authUid)
       const doesDocExists = await getDocs(q)
-      if (doesDocExists === 0) {
+      console.log(doesDocExists)
+      if (doesDocExists.size === 0) {
         await setDoc(doc(db, "not-ordered", authUid), {
           cart: [],
           favorites: [],
@@ -54,6 +54,11 @@ const FirebaseFirestoreContext = ({ children }) => {
       console.error(error)
     }
   }
+  // useEffect(() => {
+  //   if (authUid !== null) {
+  //     createCND()
+  //   }
+  // }, [authUid])
   const addToShopCart = async (cart) => {
     await updateDoc(doc(db, "not-ordered", authUid), {
       cart: arrayUnion(cart),
@@ -73,38 +78,38 @@ const FirebaseFirestoreContext = ({ children }) => {
     const favorites =
       data._document?.data?.value?.mapValue?.fields?.favorites?.arrayValue
 
-    const cartVals = cart?.values?.map((x) => x.mapValue.fields)
-    const favoritesVals = favorites?.values?.map((x) => x.mapValue.fields)
-
+    let cartVals = cart?.values?.map((x) => x.mapValue.fields)
+    let favoritesVals = favorites?.values?.map((x) => x.mapValue.fields)
+    if (!cartVals) cartVals = []
+    if (!favoritesVals) favoritesVals = []
     setData([cartVals, favoritesVals])
   }
   const removeItem = async (category, title) => {
-    let count = "cart" ? 1 : 0
+    let count
+    category === "cart" ? (count = 0) : (count = 1)
 
-    let findIndex = data[count].findIndex(
-      (item) => item.title.stringValue === title
-    )
-    if (findIndex === -1) findIndex = 0
-    data[count].splice(findIndex, 1)
-    console.log(data[count])
-    console.log(Array.isArray(data[count]))
+    const filterThatItem = data[count]
+      .map((x, i) => {
+        if (x.title.stringValue === title) return i
+        return ""
+      })
+      .filter((x) => x !== "")
+    //I didn't want to use findIndex because of some strange things
+    console.log(data[count].splice(filterThatItem[0], 1))
     const newArr = data[count].map((items) => {
       return {
         title: items.title.stringValue,
         image: items.image.stringValue,
-        quantity: items.quantity.integerValue,
-        price:
-          items.price.doubleValue !== undefined
-            ? Math.floor(items.price.doubleValue)
-            : items.price.integerValue,
+        quantity: items.quantity.integerValue ? items.quantity.integerValue : 1,
+        price: items.price.doubleValue
+          ? Math.floor(items.price.doubleValue)
+          : items.price.integerValue,
       }
     })
-
+    console.log(newArr)
     await updateDoc(doc(db, "not-ordered", authUid), {
       [category]: newArr,
     })
-    setData([])
-    await getData()
   }
   useEffect(() => {
     if (authUid !== "") {
@@ -121,7 +126,7 @@ const FirebaseFirestoreContext = ({ children }) => {
           addToFav,
           data,
           removeItem,
-          createCND,
+          // createCND,
           authUid,
         }}
       >

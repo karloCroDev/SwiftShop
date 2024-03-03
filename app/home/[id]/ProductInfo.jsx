@@ -29,14 +29,13 @@ const ProductInfo = () => {
                 onClick={
                   authUid
                     ? async () => {
-                        await createCND()
-                        await addToFav({
+                        setFavChangeColor(true)
+                        addToFav({
                           title: itemDetails?.title,
                           image: itemDetails?.image,
                           price: itemDetails?.price,
                           quantity: 1,
                         })
-                        setFavChangeColor(true)
                       }
                     : () => {
                         push("/signin")
@@ -50,14 +49,14 @@ const ProductInfo = () => {
                 onClick={
                   authUid
                     ? async () => {
-                        createCND()
-                        await addToShopCart({
+                        setCartChangeColor(true)
+
+                        addToShopCart({
                           title: itemDetails?.title,
                           image: itemDetails?.image,
                           price: itemDetails?.price,
                           quantity: 1,
                         })
-                        setCartChangeColor(true)
                       }
                     : () => {
                         push("/signin")
