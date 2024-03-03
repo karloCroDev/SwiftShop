@@ -72,7 +72,7 @@ const CartFav = () => {
                 quantity={items.quantity.integerValue}
                 price={
                   items.price.doubleValue !== undefined
-                    ? Math.round(items.price.doubleValue)
+                    ? Math.floor(items.price.doubleValue)
                     : items.price.integerValue
                 }
                 category={"favorites"}
@@ -122,7 +122,7 @@ const CartFav = () => {
                 quantity={items.quantity.integerValue}
                 price={
                   items.price.doubleValue !== undefined
-                    ? Math.round(items.price.doubleValue)
+                    ? Math.floor(items.price.doubleValue)
                     : items.price.integerValue
                 }
                 category={"cart"}

@@ -10,13 +10,13 @@ const Main = () => {
   const jewlery = products.filter((itm) => itm.category === "jewelery")
   const electronics = products.filter((itm) => itm.category === "electronics")
   const itemOfTheWeek = products[Math.floor(Math.random() * products.length)]
-  console.log(itemOfTheWeek)
+  // console.log(itemOfTheWeek)
   useEffect(() => {
     try {
       const getProducts = async () => {
         const api = await fetch("https://fakestoreapi.com/products")
         const data = await api.json()
-        console.log(data)
+        // console.log(data)
         setProducts(data)
       }
       getProducts()

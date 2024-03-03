@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation"
 const ProductInfo = () => {
   const { itemDetails, setCartChangeColor, setFavChangeColor } =
     useContext(LogicContx)
-  const { addToShopCart, addToFav, email } = useContext(FirestoreContext)
+  const { addToShopCart, addToFav, createCND, authUid } =
+    useContext(FirestoreContext)
 
   const { push } = useRouter()
   return (
@@ -26,9 +27,10 @@ const ProductInfo = () => {
               <button
                 className={style.addToFavorites}
                 onClick={
-                  email !== ""
-                    ? () => {
-                        addToFav({
+                  authUid
+                    ? async () => {
+                        await createCND()
+                        await addToFav({
                           title: itemDetails?.title,
                           image: itemDetails?.image,
                           price: itemDetails?.price,
@@ -36,7 +38,9 @@ const ProductInfo = () => {
                         })
                         setFavChangeColor(true)
                       }
-                    : push("/signin")
+                    : () => {
+                        push("/signin")
+                      }
                 }
               >
                 Add to favorites
@@ -44,9 +48,10 @@ const ProductInfo = () => {
               <button
                 className={style.addToCart}
                 onClick={
-                  email !== ""
-                    ? () => {
-                        addToShopCart({
+                  authUid
+                    ? async () => {
+                        createCND()
+                        await addToShopCart({
                           title: itemDetails?.title,
                           image: itemDetails?.image,
                           price: itemDetails?.price,
@@ -54,7 +59,9 @@ const ProductInfo = () => {
                         })
                         setCartChangeColor(true)
                       }
-                    : push("/signin")
+                    : () => {
+                        push("/signin")
+                      }
                 }
               >
                 Add to cart

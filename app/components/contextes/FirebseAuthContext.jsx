@@ -12,58 +12,58 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth"
-import { addDoc, collection, doc, setDoc } from "firebase/firestore"
+import { doc, setDoc } from "firebase/firestore"
 
 export const AuthContext = createContext()
 
+//Make toast messages!!!
 const FirebseAuthContext = ({ children }) => {
   ///Traditional way with no providers
   const { push } = useRouter()
-
-  const [authName, setAuthName] = useState("")
-  const [authEmail, setAuthEmail] = useState("")
-  const [authImage, setAuthImage] = useState("")
   const images = [
     "https://i.postimg.cc/SQcxrzJW/meerkat.png",
     "https://i.postimg.cc/DzccLz1F/giraffe.png",
     "https://i.postimg.cc/SRHLkYbL/panda.png",
     "https://i.postimg.cc/mgY3WrXM/cat.png",
   ]
+
+  const [authName, setAuthName] = useState("")
+  const [authEmail, setAuthEmail] = useState("")
+  const [authImage, setAuthImage] = useState("")
+  const [authUid, setAuthUid] = useState("")
+  const [checkUser, setCheckUser] = useState(0)
+
+  ///Later when I worked I realised that I could have used object and it would be much much better than using this approach
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user.displayName, user.photoURL)
+        console.log(user)
         setAuthName(user.displayName)
-        setAuthImage(user.photoURL)
         setAuthEmail(user.email)
+        setAuthImage(user.photoURL)
+        setAuthUid(user.uid)
+        console.log("DDWWD")
       } else {
-        console.log("There is no user")
+        setAuthName("")
+        setAuthEmail("")
+        setAuthImage("")
+        setAuthUid("")
       }
     })
-  }, [])
 
-  //Create userCollecton with Document
-  const createCND = async (email) => {
-    try {
-      await addDoc(collection(db, "not-ordered", email), {
-        cart: [],
-        favorites: [],
-      })
-      push("/")
-      setTimeout(() => {
-        window.location.reload()
-        //Next time when you have time for projects don't do dumb stuff like this please
-      }, 500)
-    } catch (error) {
-      console.log(error)
+    return () => {
+      unsub()
     }
-  }
+    //prevents memory leak
+  }, [checkUser])
+  // console.log(authName)
+  //Create userCollecton with Document
+
   //User Auth
   const signIn = async (email, password) => {
     try {
-      const signInUser = await signInWithEmailAndPassword(auth, email, password)
-      console.log(signInUser?.user.displayName)
-      console.log("Successful sign in")
+      await signInWithEmailAndPassword(auth, email, password)
+      // setCheckUser(checkUser + 1)
     } catch (error) {
       console.error(error)
     }
@@ -79,7 +79,9 @@ const FirebseAuthContext = ({ children }) => {
         displayName: username,
         photoURL: images[Math.floor(Math.random() * images.length)], //code for random image
       })
-      await createCND(email)
+      setCheckUser(checkUser + 1)
+
+      push("/")
     } catch (error) {
       console.error(error)
       alert("Invalid sign up please try again!")
@@ -89,11 +91,8 @@ const FirebseAuthContext = ({ children }) => {
     try {
       await signOut(auth)
       push("/signin")
-      setTimeout(() => {
-        window.location.reload()
-        //Next time when you have time for projects don't do this dumb stuff please
-      }, 500)
       alert("You are logged out successfuly")
+      setCheckUser(checkUser + 1)
     } catch (error) {
       alert("Wrong email or password :/")
       console.error(error)
@@ -122,6 +121,7 @@ const FirebseAuthContext = ({ children }) => {
           authImage,
           signOutUsr,
           authEmail,
+          authUid,
         }}
       >
         {children}

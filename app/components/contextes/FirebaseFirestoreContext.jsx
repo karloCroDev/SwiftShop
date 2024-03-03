@@ -1,12 +1,17 @@
 "use client"
 import {
   FieldValue,
+  addDoc,
   arrayUnion,
+  collection,
   count,
   doc,
   getDoc,
+  getDocs,
+  query,
   setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore"
 import React, { createContext, useEffect, useContext, useState } from "react"
 import { db } from "../firebase/Firebase"
@@ -17,33 +22,53 @@ export const FirestoreContext = createContext()
 
 const FirebaseFirestoreContext = ({ children }) => {
   //Contextes
-  const { authEmail } = useContext(AuthContext)
+  const { authUid } = useContext(AuthContext)
   const { favChangeColor, cartChangeColor } = useContext(LogicContx)
   //Feedback
   const feedback = async (email, content) => {
-    await setDoc(doc(db, "feedback", email), {
-      //Set the custom email because if there is no user I need to set different email to firebase
-      email: email,
+    await setDoc(doc(db, "feedback", authUid), {
+      email: authUid !== "" ? email : authUid,
       content: content,
     })
   }
 
   ///
+
+  const createCND = async () => {
+    try {
+      const q = query(
+        collection(db, "not-ordered"),
+        where("uid", "==", authUid)
+      )
+      console.log(q)
+      console.log(authUid)
+      const doesDocExists = await getDocs(q)
+      if (doesDocExists === 0) {
+        await setDoc(doc(db, "not-ordered", authUid), {
+          cart: [],
+          favorites: [],
+          uid: authUid,
+        })
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
   const addToShopCart = async (cart) => {
-    await updateDoc(doc(db, "not-ordered", authEmail), {
+    await updateDoc(doc(db, "not-ordered", authUid), {
       cart: arrayUnion(cart),
     })
   }
+
   const addToFav = async (favs) => {
-    await updateDoc(doc(db, "not-ordered", authEmail), {
+    await updateDoc(doc(db, "not-ordered", authUid), {
       favorites: arrayUnion(favs),
     })
   }
 
   const [data, setData] = useState([])
   const getData = async () => {
-    console.log(authEmail)
-    const data = await getDoc(doc(db, "not-ordered", authEmail))
+    const data = await getDoc(doc(db, "not-ordered", authUid))
     const cart = data._document?.data?.value?.mapValue?.fields?.cart?.arrayValue
     const favorites =
       data._document?.data?.value?.mapValue?.fields?.favorites?.arrayValue
@@ -55,14 +80,14 @@ const FirebaseFirestoreContext = ({ children }) => {
   }
   const removeItem = async (category, title) => {
     let count = "cart" ? 1 : 0
-    console.log(data[count])
 
     let findIndex = data[count].findIndex(
       (item) => item.title.stringValue === title
     )
     if (findIndex === -1) findIndex = 0
     data[count].splice(findIndex, 1)
-
+    console.log(data[count])
+    console.log(Array.isArray(data[count]))
     const newArr = data[count].map((items) => {
       return {
         title: items.title.stringValue,
@@ -70,25 +95,35 @@ const FirebaseFirestoreContext = ({ children }) => {
         quantity: items.quantity.integerValue,
         price:
           items.price.doubleValue !== undefined
-            ? Math.round(items.price.doubleValue)
+            ? Math.floor(items.price.doubleValue)
             : items.price.integerValue,
       }
     })
 
-    await updateDoc(doc(db, "not-ordered", authEmail), {
+    await updateDoc(doc(db, "not-ordered", authUid), {
       [category]: newArr,
     })
+    setData([])
+    await getData()
   }
   useEffect(() => {
-    if (authEmail !== "") {
+    if (authUid !== "") {
       getData()
     }
-  }, [authEmail, favChangeColor, cartChangeColor])
+  }, [favChangeColor, cartChangeColor, authUid])
 
   return (
     <>
       <FirestoreContext.Provider
-        value={{ feedback, addToShopCart, addToFav, data, removeItem }}
+        value={{
+          feedback,
+          addToShopCart,
+          addToFav,
+          data,
+          removeItem,
+          createCND,
+          authUid,
+        }}
       >
         {children}
       </FirestoreContext.Provider>
