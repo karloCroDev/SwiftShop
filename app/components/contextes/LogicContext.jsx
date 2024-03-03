@@ -8,7 +8,7 @@ const LogicContext = ({ children }) => {
   const [closeCart, setCloseCart] = useState(false)
 
   const [itemDetails, setItemDetails] = useState({})
-  const [countItem, setCountItem] = useState(1)
+  const [countItem, setCountItem] = useState(2)
   const [favChangeColor, setFavChangeColor] = useState(false)
   const [cartChangeColor, setCartChangeColor] = useState(false)
   return (

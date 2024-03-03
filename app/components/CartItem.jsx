@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react"
 import style from "../styles/module-styles/cart-fav.module.scss"
 import { FirestoreContext } from "./contextes/FirebaseFirestoreContext"
+import { LogicContx } from "./contextes/LogicContext"
 
 /////////
 const CartItem = ({ image, title, quantity, price, category }) => {
-  const { removeItem, countItem, setCountItem } = useContext(FirestoreContext)
+  const { removeItem, updateQuantity } = useContext(FirestoreContext)
+  const { setCountItem, countItem } = useContext(LogicContx)
 
   const [doesElEx, setDoesElEx] = useState(true)
   console.log(quantity)
@@ -26,14 +28,20 @@ const CartItem = ({ image, title, quantity, price, category }) => {
       <div className={style.quantity}>
         <button
           className={style.count}
-          onClick={() => setCountItem(countItem - 1)}
+          onClick={() => {
+            setCountItem(countItem - 1)
+            updateQuantity(category, title)
+          }}
         >
           -
         </button>
         <h2>{quantity}</h2>
         <button
           className={style.count}
-          onClick={() => setCountItem(countItem + 1)}
+          onClick={() => {
+            setCountItem(countItem + 1)
+            updateQuantity(category, title)
+          }}
         >
           +
         </button>

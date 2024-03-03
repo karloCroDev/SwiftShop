@@ -22,8 +22,9 @@ export const FirestoreContext = createContext()
 
 const FirebaseFirestoreContext = ({ children }) => {
   //Contextes
+
   const { authUid } = useContext(AuthContext)
-  const { favChangeColor, cartChangeColor } = useContext(LogicContx)
+  const { favChangeColor, cartChangeColor, countItem } = useContext(LogicContx)
   //Feedback
   const feedback = async (email, content) => {
     await setDoc(doc(db, "feedback", authUid), {
@@ -111,18 +112,39 @@ const FirebaseFirestoreContext = ({ children }) => {
       [category]: newArr,
     })
   }
-  const updateQuantity = async (quantityNum) => {
+  ///
+
+  const updateQuantity = async (category, title) => {
     let count
+
     category === "cart" ? (count = 0) : (count = 1)
 
     const filterThatItem = data[count]
       .map((itm, i) => {
-        if (itm.title.stringValue === title) return itm
+        if (itm.title.stringValue === title) return i
         return ""
       })
       .filter((itm) => itm !== "")
-    await updateDoc(doc(db, "not-ordered", authUid), {})
+    const changedQuan = (data[count][filterThatItem[0]].quantity.integerValue =
+      countItem)
+    console.log(data[count][filterThatItem[0]])
+
+    const createNewArr = [changedQuan, ...data[count]]
+    const arrToPush = data[count].map((items) => {
+      return {
+        title: items.title.stringValue,
+        image: items.image.stringValue,
+        quantity: Number(items.quantity.integerValue),
+        price: Number(items.price.doubleValue)
+          ? Number(Math.floor(items.price.doubleValue))
+          : Number(items.price.integerValue),
+      }
+    })
+    await updateDoc(doc(db, "not-ordered", authUid), {
+      [category]: arrToPush,
+    })
   }
+  //////////////////////
   useEffect(() => {
     if (authUid !== "") {
       getData()
@@ -138,8 +160,8 @@ const FirebaseFirestoreContext = ({ children }) => {
           addToFav,
           data,
           removeItem,
-          // createCND,
           authUid,
+          updateQuantity,
         }}
       >
         {children}

@@ -10,7 +10,7 @@ const page = ({ params }) => {
     const getUserInfo = async () => {
       try {
         const api = await fetch(
-          `https://fakestoreapi.com/products/${params.id}` //I wanted to use this because I could easily just pass data using props or smth like that but I wanted to show that id could be used too!
+          `https://fakestoreapi.com/products/${params.id}` //I wanted to use this because I could easily just pass data using props or smth like that but I wanted to show that id could be used too! Note this much worse version that I have done
         )
         const data = await api.json()
         console.log(data)
