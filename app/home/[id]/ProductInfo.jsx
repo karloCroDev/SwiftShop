@@ -5,8 +5,9 @@ import style from "../../styles/module-styles/product-info.module.scss"
 import { LogicContx } from "@/app/components/contextes/LogicContext"
 import { FirestoreContext } from "@/app/components/contextes/FirebaseFirestoreContext"
 import { useRouter } from "next/navigation"
-const ProductInfo = () => {
-  const { itemDetails, setCartChangeColor, setFavChangeColor, countItem } =
+const ProductInfo = (itemDetails) => {
+  //Too lazy to destrucutre 👌
+  const { setCartChangeColor, setFavChangeColor, countItem } =
     useContext(LogicContx)
   const { addToShopCart, addToFav, createCND, authUid } =
     useContext(FirestoreContext)
@@ -16,13 +17,13 @@ const ProductInfo = () => {
     <>
       <div className={style.productInfo}>
         <section>
-          <img src={itemDetails?.image} alt="Product image" />
-          <h1>{itemDetails?.title}</h1>
+          <img src={itemDetails.image} alt="Product image" />
+          <h1>{itemDetails.title}</h1>
           <p>
-            <b>Description:</b> {itemDetails?.description}.
+            <b>Description:</b> {itemDetails.description}.
           </p>
           <div className={style.mainInfo}>
-            <h2>Price: {itemDetails?.price}$</h2>
+            <h2>Price: {itemDetails.price}$</h2>
             <div className={style.btnContainer}>
               <button
                 className={style.addToFavorites}
@@ -31,9 +32,9 @@ const ProductInfo = () => {
                     ? async () => {
                         setFavChangeColor(true)
                         addToFav({
-                          title: itemDetails?.title,
-                          image: itemDetails?.image,
-                          price: itemDetails?.price,
+                          title: itemDetails.title,
+                          image: itemDetails.image,
+                          price: itemDetails.price,
                           quantity: countItem,
                         })
                       }
@@ -51,8 +52,8 @@ const ProductInfo = () => {
                     ? async () => {
                         setCartChangeColor(true)
                         addToShopCart({
-                          title: itemDetails?.title,
-                          image: itemDetails?.image,
+                          title: itemDetails.title,
+                          image: itemDetails.image,
                           price: itemDetails?.price,
                           quantity: countItem,
                         })

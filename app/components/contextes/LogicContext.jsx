@@ -7,7 +7,6 @@ const LogicContext = ({ children }) => {
   const [showPopup, setShowPopup] = useState(false)
   const [closeCart, setCloseCart] = useState(false)
 
-  const [itemDetails, setItemDetails] = useState({})
   const [countItem, setCountItem] = useState(2)
   const [favChangeColor, setFavChangeColor] = useState(false)
   const [cartChangeColor, setCartChangeColor] = useState(false)
@@ -19,8 +18,7 @@ const LogicContext = ({ children }) => {
           setShowPopup,
           closeCart,
           setCloseCart,
-          itemDetails,
-          setItemDetails,
+
           favChangeColor,
           setFavChangeColor,
           cartChangeColor,
