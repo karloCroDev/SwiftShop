@@ -6,10 +6,10 @@ import { LogicContx } from "./contextes/LogicContext"
 /////////
 const CartItem = ({ image, title, quantity, price, category }) => {
   const { removeItem, updateQuantity } = useContext(FirestoreContext)
-  const { setCountItem, countItem } = useContext(LogicContx)
 
+  const [countItem, setCountItem] = useState(quantity)
   const [doesElEx, setDoesElEx] = useState(true)
-  console.log(quantity)
+  // console.log(quantity)
   return doesElEx ? (
     <div
       className={style.prodItem}
@@ -29,18 +29,23 @@ const CartItem = ({ image, title, quantity, price, category }) => {
         <button
           className={style.count}
           onClick={() => {
-            setCountItem(countItem - 1)
-            updateQuantity(category, title)
+            setCountItem(+countItem - 1)
+            if (+countItem <= 1) {
+              setDoesElEx(false)
+              removeItem(category, title)
+              return
+            }
+            updateQuantity(category, title, +countItem - 1)
           }}
         >
           -
         </button>
-        <h2>{quantity}</h2>
+        <h2>{countItem}</h2>
         <button
           className={style.count}
           onClick={() => {
-            setCountItem(countItem + 1)
-            updateQuantity(category, title)
+            setCountItem(+countItem + 1) //DB returns string so this fixes
+            updateQuantity(category, title, +countItem + 1) //I need to specify that is number, look into future why is that
           }}
         >
           +

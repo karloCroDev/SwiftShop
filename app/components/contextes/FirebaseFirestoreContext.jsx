@@ -24,7 +24,7 @@ const FirebaseFirestoreContext = ({ children }) => {
   //Contextes
 
   const { authUid } = useContext(AuthContext)
-  const { favChangeColor, cartChangeColor, countItem } = useContext(LogicContx)
+  const { favChangeColor, cartChangeColor } = useContext(LogicContx)
   //Feedback
   const feedback = async (email, content) => {
     await setDoc(doc(db, "feedback", authUid), {
@@ -114,7 +114,7 @@ const FirebaseFirestoreContext = ({ children }) => {
   }
   ///
 
-  const updateQuantity = async (category, title) => {
+  const updateQuantity = async (category, title, numOfItems) => {
     let count
 
     category === "cart" ? (count = 0) : (count = 1)
@@ -126,10 +126,9 @@ const FirebaseFirestoreContext = ({ children }) => {
       })
       .filter((itm) => itm !== "")
     const changedQuan = (data[count][filterThatItem[0]].quantity.integerValue =
-      countItem)
-    console.log(data[count][filterThatItem[0]])
+      +numOfItems)
 
-    const createNewArr = [changedQuan, ...data[count]]
+    console.log(changedQuan)
     const arrToPush = data[count].map((items) => {
       return {
         title: items.title.stringValue,

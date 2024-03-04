@@ -7,10 +7,8 @@ import { FirestoreContext } from "@/app/components/contextes/FirebaseFirestoreCo
 import { useRouter } from "next/navigation"
 const ProductInfo = (itemDetails) => {
   //Too lazy to destrucutre 👌
-  const { setCartChangeColor, setFavChangeColor, countItem } =
-    useContext(LogicContx)
-  const { addToShopCart, addToFav, createCND, authUid } =
-    useContext(FirestoreContext)
+  const { setCartChangeColor, setFavChangeColor } = useContext(LogicContx)
+  const { addToShopCart, addToFav, authUid } = useContext(FirestoreContext)
 
   const { push } = useRouter()
   return (
@@ -35,7 +33,7 @@ const ProductInfo = (itemDetails) => {
                           title: itemDetails.title,
                           image: itemDetails.image,
                           price: itemDetails.price,
-                          quantity: countItem,
+                          quantity: 1,
                         })
                       }
                     : () => {
@@ -55,7 +53,7 @@ const ProductInfo = (itemDetails) => {
                           title: itemDetails.title,
                           image: itemDetails.image,
                           price: itemDetails?.price,
-                          quantity: countItem,
+                          quantity: 1,
                         })
                       }
                     : () => {
