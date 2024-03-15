@@ -92,7 +92,7 @@ const navbar = () => {
             xmlns="http://www.w3.org/2000/svg"
             data-name="Flat Line"
             viewBox="0 0 24 24"
-            className="signOut"
+            className="sign-out"
             onClick={signOutUsr}
           >
             <path
@@ -126,7 +126,7 @@ const navbar = () => {
             />
           </svg>
         ) : (
-          <div></div> //Don't remove this div because of space-between
+          <h1></h1> //Could have played with styles but this is the simplest way
         )}
       </nav>
     </>

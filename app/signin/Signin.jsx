@@ -14,26 +14,27 @@ const Signin = () => {
   return (
     <>
       <div className={style.align}>
-        <ul className={style.nav}>
-          <li>
-            <Link href="/">
-              <h1>SwiftCart</h1>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  stroke="#ff4c29"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 12h16m0 0-4-4m4 4-4 4"
-                />
-              </svg>
-            </Link>
-          </li>
-        </ul>
+        <nav>
+          <Link href="/">
+            <h1>SwiftCart</h1>
+          </Link>
+
+          <Link href="/">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="get-out"
+            >
+              <path
+                stroke="#ff4c29"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 12h16m0 0-4-4m4 4-4 4"
+              />
+            </svg>
+          </Link>
+        </nav>
       </div>
       <div>
         <form

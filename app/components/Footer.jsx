@@ -29,7 +29,9 @@ const Footer = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-            ) : null}
+            ) : (
+              <div></div>
+            )}
             <div
               className={`${authName !== "" ? style.expand : null}  ${
                 style.messageContainer
@@ -46,6 +48,12 @@ const Footer = () => {
               ></textarea>
               <button
                 onClick={async () => {
+                  if (
+                    authEmail === "" &&
+                    email.length > 0 &&
+                    !email.includes("@")
+                  )
+                    return //make toast message
                   await feedback(authEmail !== "" ? authEmail : email, content)
                   setContent("")
                 }}

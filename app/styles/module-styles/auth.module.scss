@@ -1,34 +1,9 @@
 @import "../styleHlp/variables.scss";
 
-.align {
-  display: grid;
-  place-items: center;
-  .nav {
-    width: 90%;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    li {
-      h1 {
-        font-size: 50px;
-        cursor: pointer;
-      }
-      svg {
-        width: 100px;
-        height: 100px;
-        fill: $text;
-        cursor: pointer;
-      }
-    }
-  }
-}
-
 .formSign,
 .formSignTwo {
-  width: 450px;
-  height: 550px;
+  width: 500px;
+  height: 600px;
   border: 2px solid $secondary;
   border-radius: 20px;
   position: absolute;
@@ -37,6 +12,7 @@
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 40px;
 
@@ -44,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+
     h2 {
       font-size: 40px;
       font-family: $title-sec;
@@ -126,6 +102,6 @@
 }
 
 .formSignTwo {
-  height: 640px;
-  width: 500px;
+  height: 675px;
+  width: 575px;
 }

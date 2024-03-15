@@ -27,11 +27,11 @@ h1 {
 nav {
   width: 100%;
   height: 150px;
+  padding: 0 100px;
   // background-color: $orange;
   display: flex;
   align-items: center;
-  justify-content: center;
-  // justify-content: space-between;
+  justify-content: space-between;
   //this trick doesn't work here because I need to center the navbar
   background-color: white;
   position: fixed;
@@ -42,20 +42,13 @@ nav {
   z-index: $nav-z-indx;
 
   h1 {
-    position: absolute;
-    left: 50px;
-    top: 35px;
+    width: 90px;
     font-size: 50px;
     cursor: pointer;
     // margin-right: auto ; //I set flex to center so no trick sadly
   }
-  .signOut {
-    position: absolute;
-    right: 50px;
-    top: 35px;
-
+  .sign-out {
     width: 90px;
-    height: 90px;
     fill: $whitesmoke;
     cursor: pointer;
     &:hover path {
@@ -65,6 +58,13 @@ nav {
       stroke: $whitesmoke;
       transition: stroke 250ms linear;
     }
+  }
+  .get-out {
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    fill: $text;
+    // align-self: ;
   }
 }
 

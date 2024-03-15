@@ -14,7 +14,7 @@ const Popup = () => {
   // useEffect(() => {
   //   setTimeout(() => {
   //     setShowPopup(true)
-  //   }, 15000)
+  //   }, 1500)
   // }, [])
   return (
     <>
