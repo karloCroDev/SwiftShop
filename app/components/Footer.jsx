@@ -3,7 +3,8 @@ import React, { useContext, useState } from "react"
 import style from "../styles/module-styles/footer.module.scss"
 import { AuthContext } from "./contextes/FirebseAuthContext"
 import { FirestoreContext } from "./contextes/FirebaseFirestoreContext"
-import { auth } from "./firebase/Firebase"
+import { IoIosSend } from "react-icons/io"
+
 const Footer = () => {
   const { authName, authEmail } = useContext(AuthContext)
   const { feedback } = useContext(FirestoreContext)
@@ -58,7 +59,7 @@ const Footer = () => {
                   setContent("")
                 }}
               >
-                Send{"->"}
+                <IoIosSend className={style.svg} />
               </button>
             </div>
           </div>

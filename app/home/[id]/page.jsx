@@ -4,9 +4,7 @@ import ProductInfo from "./ProductInfo.jsx"
 import Navbar from "@/app/components/Navbar.jsx"
 const getUserInfo = async (item) => {
   try {
-    const api = await fetch(
-      `https://fakestoreapi.com/products/${item}` //I wanted to use this because I could easily just pass data using props or smth like that but I wanted to show that id could be used too! Note this much worse version that I have done
-    )
+    const api = await fetch(`https://fakestoreapi.com/products/${item}`)
     return await api.json()
   } catch (error) {
     console.error(error)

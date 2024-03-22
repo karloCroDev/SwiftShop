@@ -3,7 +3,9 @@ import "./styles/global-style.scss"
 import FirebseAuthContext from "./components/contextes/FirebseAuthContext.jsx"
 import LogicContext from "./components/contextes/LogicContext.jsx"
 import CartFav from "./components/CartFav"
+import Popup from "./components/Popup"
 import FirebaseFirestoreContext from "./components/contextes/FirebaseFirestoreContext"
+import Toast from "./components/Toast"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -16,16 +18,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <FirebseAuthContext>
-          <LogicContext>
+        <LogicContext>
+          <FirebseAuthContext>
             <FirebaseFirestoreContext>
-              {/* <Navbar></Navbar> */}
-              {/* This is rendering twice so make sure to fix */}
               {children}
               <CartFav />
+              <Popup />
+              <Toast />
+              {/* Setted on all pages */}
             </FirebaseFirestoreContext>
-          </LogicContext>
-        </FirebseAuthContext>
+          </FirebseAuthContext>
+        </LogicContext>
       </body>
     </html>
   )

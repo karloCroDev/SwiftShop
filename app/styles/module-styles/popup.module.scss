@@ -20,17 +20,15 @@
     justify-content: space-around;
     .btn1 {
       @include button-default;
+      @include action-buttton;
       background-color: $text;
       color: $primary-background;
       border: none;
       font-size: 17px;
-
-      &:hover {
-        color: $text;
-      }
     }
     .btn2 {
       @include button-default;
+      @include action-buttton; //this is so poorly made
       background-color: $orange;
       color: $primary-background;
       border: none;

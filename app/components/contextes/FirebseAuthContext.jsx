@@ -13,11 +13,13 @@ import {
   updateProfile,
 } from "firebase/auth"
 import { doc, setDoc } from "firebase/firestore"
-
+import { LogicContx } from "./LogicContext.jsx"
 export const AuthContext = createContext()
 
 //Make toast messages!!!
 const FirebseAuthContext = ({ children }) => {
+  const { showToastFunc, showPopupFunc } = useContext(LogicContx)
+
   ///Traditional way with no providers
   const { push } = useRouter()
   const images = [
@@ -42,12 +44,16 @@ const FirebseAuthContext = ({ children }) => {
         setAuthEmail(user.email)
         setAuthImage(user.photoURL)
         setAuthUid(user.uid)
-        console.log("DDWWD")
+        showPopupFunc(false)
+        showToastFunc(false)
+        // console.log("DDWWD")
       } else {
         setAuthName("")
         setAuthEmail("")
         setAuthImage("")
         setAuthUid("")
+        showPopupFunc(true)
+        showToastFunc(true)
       }
     })
 

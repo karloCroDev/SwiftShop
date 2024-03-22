@@ -18,7 +18,7 @@
     img {
       object-fit: contain;
       margin-top: 10px;
-      width: 100%;
+      width: 100%; //I think I could have used to span two columns, but I didn't want to complicate
       height: 350px;
       background-color: $secondary;
       border-radius: 10px;

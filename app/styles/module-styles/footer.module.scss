@@ -1,5 +1,5 @@
 @import "../styleHlp/variables.scss";
-
+@import "../styleHlp/mixins.scss";
 .info {
   margin-top: 30px;
 }
@@ -66,6 +66,13 @@
         border: none;
         color: $text;
         cursor: pointer;
+        display: grid;
+        place-items: center;
+
+        @include action-buttton;
+        .svg {
+          font-size: 30px;
+        }
       }
     }
   }

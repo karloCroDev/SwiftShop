@@ -11,7 +11,6 @@ const page = () => {
       <Navbar />
       <main className="navbarExcluded">
         <Main />
-        <Popup />
       </main>
       {/* <CartFav /> */}
       <Footer />
