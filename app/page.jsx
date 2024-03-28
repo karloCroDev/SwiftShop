@@ -1,9 +1,9 @@
-import React from "react"
-import Navbar from "./components/Navbar.jsx"
-import Popup from "./components/Popup.jsx"
-import Main from "./components/Main.jsx"
-import Footer from "./components/Footer.jsx"
-import CartFav from "./components/CartFav.jsx"
+import React from "react";
+import Navbar from "./components/navbar/Navbar.jsx";
+import Popup from "./components/Popup.jsx";
+import Main from "./components/Main.jsx";
+import Footer from "./components/Footer.jsx";
+import CartFav from "./components/CartFav.jsx";
 
 const page = () => {
   return (
@@ -15,7 +15,7 @@ const page = () => {
       {/* <CartFav /> */}
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

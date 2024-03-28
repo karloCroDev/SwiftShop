@@ -18,6 +18,7 @@
     width: 280px;
     display: flex;
     justify-content: space-around;
+
     .btn1 {
       @include button-default;
       @include action-buttton;
@@ -30,10 +31,9 @@
       @include button-default;
       @include action-buttton; //this is so poorly made
       background-color: $orange;
-      color: $primary-background;
+      color: $text;
       border: none;
       font-size: 17px;
-
       &:hover {
         color: $text;
       }
@@ -42,9 +42,11 @@
 }
 
 .hide {
+  border: none;
   transform: translateX(400px);
 }
 .show {
+  border: none;
   animation: popup 1s linear;
   transform: translateX(0px);
 }

@@ -56,7 +56,6 @@
     transition: transform 250ms linear;
   }
   &:hover::before {
-    // background-color: rgb(50, 155, 145);
     // cursor: pointer;
     left: 0;
     right: 0;
@@ -77,13 +76,13 @@
     bottom: 10px;
   }
   &:hover {
-    background-color: rgb(50, 155, 145);
+    background-color: $light-blue;
     cursor: pointer;
   }
 }
 
 @mixin hr {
-  background-color: black;
+  background-color: #000;
   height: 4px;
   border-radius: 2px;
   width: 325px;
@@ -93,7 +92,6 @@
   &:hover {
     background-color: $light-blue;
     transition: background-color 200ms linear;
-
     color: $text;
   }
 }

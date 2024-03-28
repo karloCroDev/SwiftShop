@@ -7,36 +7,40 @@
   flex-direction: column;
   section {
     height: fit-content;
-    width: 800px;
+    width: 820px;
     display: flex;
     flex-direction: column;
-
+    cursor: pointer;
     h2 {
       font-family: $title-fam;
       font-size: 35px;
     }
     img {
       object-fit: contain;
-      margin-top: 10px;
       width: 100%; //I think I could have used to span two columns, but I didn't want to complicate
       height: 350px;
       background-color: $secondary;
       border-radius: 10px;
       background-color: $text;
+      position: relative;
     }
-    h3:first-of-type {
-      margin-top: 12px !important;
-    }
-    h3 {
-      all: unset;
-      font-size: 20px;
-      margin-left: 5px;
-      margin-top: 2px;
+    .itemContainer {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-bottom: 20px;
+      border-radius: 0 0 8px 8px;
+
+      h3 {
+        font-weight: 550;
+        font-size: 20px;
+        display: flex;
+      }
     }
   }
 
   .section {
-    margin-top: 20px;
     font-size: 35px;
     font-family: $title-fam;
   }
@@ -44,24 +48,24 @@
     margin-top: 20px;
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: 600px 600px;
+
     justify-content: space-between;
+    gap: 20px;
 
     article {
-      width: 380px;
-      height: 550px;
+      width: 400px;
+      height: 530px;
       border-radius: 10px;
       transition: background-color 250ms ease-in-out;
       display: flex;
       flex-direction: column;
       position: relative;
-      background-color: $hover-color;
+      background-color: $item-color;
       img {
         object-fit: contain;
-        width: 380px;
+        width: 100%;
         height: 400px;
         border-radius: 10px;
-        background-color: $secondary;
         background-color: $text;
       }
       h3 {

@@ -1,17 +1,17 @@
 // import React, { useContext, useEffect, useState } from "react"
-import ProductInfo from "./ProductInfo.jsx"
+import ProductInfo from "./ProductInfo.jsx";
 // import { LogicContx } from "@/app/components/contextes/LogicContext.jsx"
-import Navbar from "@/app/components/Navbar.jsx"
+import Navbar from "@/app/components/navbar/Navbar.jsx";
 const getUserInfo = async (item) => {
   try {
-    const api = await fetch(`https://fakestoreapi.com/products/${item}`)
-    return await api.json()
+    const api = await fetch(`https://fakestoreapi.com/products/${item}`);
+    return await api.json();
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 const page = async ({ params }) => {
-  const data = await getUserInfo(params.id)
+  const data = await getUserInfo(params.id);
 
   return (
     <>
@@ -24,7 +24,7 @@ const page = async ({ params }) => {
         price={data.price}
       />
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

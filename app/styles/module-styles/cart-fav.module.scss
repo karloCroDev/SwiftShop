@@ -6,7 +6,7 @@
   top: 0;
   width: 100%;
   height: 100vh;
-  background-color: $hover-color;
+  background-color: $light-blue;
   z-index: 99999;
 }
 .cartContainer {
@@ -105,7 +105,7 @@
       cursor: pointer;
       border: none;
       color: $whitesmoke;
-      background-color: rgb(50, 155, 145);
+      background-color: $light-blue;
       transition: all 250ms linear;
     }
   }
