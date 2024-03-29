@@ -1,16 +1,16 @@
-"use client"
-import React, { useContext, useState } from "react"
-import style from "../styles/module-styles/auth.module.scss"
-import Link from "next/link"
-import { AuthContext } from "../components/contextes/FirebseAuthContext.jsx"
-import { useRouter } from "next/navigation"
+"use client";
+import React, { useContext, useState } from "react";
+import style from "../styles/module-styles/auth.module.scss";
+import Link from "next/link";
+import { AuthContext } from "../components/contextes/FirebseAuthContext.jsx";
+import { useRouter } from "next/navigation";
 
 const Signin = () => {
-  const { signIn } = useContext(AuthContext)
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const { signIn } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const router = useRouter()
+  const router = useRouter();
   return (
     <>
       <div className={style.align}>
@@ -39,9 +39,8 @@ const Signin = () => {
       <div>
         <form
           onSubmit={async (e) => {
-            e.preventDefault()
-            await signIn(email, password)
-            router.push("/")
+            e.preventDefault();
+            await signIn(email, password);
           }}
           className={style.formSign}
         >
@@ -79,7 +78,7 @@ const Signin = () => {
         </form>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Signin
+export default Signin;

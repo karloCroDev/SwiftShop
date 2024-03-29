@@ -1,34 +1,43 @@
-"use client"
-import React, { createContext, useRef, useState } from "react"
+"use client";
+import React, { createContext, useRef, useState } from "react";
+import "../../styles/global-style.scss";
 
-export const LogicContx = createContext()
+import toast from "react-hot-toast";
+
+//////
+export const LogicContx = createContext();
 
 const LogicContext = ({ children }) => {
-  const [showPopup, setShowPopup] = useState(false)
-  const [closeCart, setCloseCart] = useState(false)
-  const [toast, setToast] = useState(false)
+  const toastFn = (state, text) => {
+    state
+      ? toast.success(text, {
+          duration: 4000,
+          position: "bottom-left",
+          className: "toast-message",
+        })
+      : toast.error(text, {
+          duration: 4000,
+          position: "bottom-left",
+          className: "toast-message",
+        });
+  };
+  /////////
+  const [showPopup, setShowPopup] = useState(false);
+  const [closeCart, setCloseCart] = useState(false);
 
-  const [favChangeColor, setFavChangeColor] = useState(false)
-  const [cartChangeColor, setCartChangeColor] = useState(false)
+  const [favChangeColor, setFavChangeColor] = useState(false);
+  const [cartChangeColor, setCartChangeColor] = useState(false);
 
   const showPopupFunc = (state) => {
     if (state) {
       setTimeout(() => {
-        setShowPopup(state)
-      }, 7500)
-      return
+        setShowPopup(state);
+      }, 7500);
+      return;
     }
-    setShowPopup(state)
-  }
-  const showToastFunc = (state) => {
-    if (state) {
-      setTimeout(() => {
-        setToast(state)
-      }, 7500)
-      return
-    }
-    setToast(state)
-  }
+    setShowPopup(state);
+  };
+
   return (
     <>
       <LogicContx.Provider
@@ -42,13 +51,13 @@ const LogicContext = ({ children }) => {
           cartChangeColor,
           setCartChangeColor,
           showPopupFunc,
-          showToastFunc,
+          toastFn,
         }}
       >
         {children}
       </LogicContx.Provider>
     </>
-  )
-}
+  );
+};
 
-export default LogicContext
+export default LogicContext;

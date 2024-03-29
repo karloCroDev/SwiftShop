@@ -1,24 +1,27 @@
-"use client"
+"use client";
 
-import React, { useContext, useState } from "react"
-import style from "../styles/module-styles/cart-fav.module.scss"
-import { AuthContext } from "./contextes/FirebseAuthContext.jsx"
-import { LogicContx } from "./contextes/LogicContext.jsx"
-import CartItem from "./CartItem"
-import { FirestoreContext } from "./contextes/FirebaseFirestoreContext"
+import React, { useContext, useState } from "react";
+import style from "../styles/module-styles/cart-fav.module.scss";
+import { AuthContext } from "./contextes/FirebseAuthContext.jsx";
+import { LogicContx } from "./contextes/LogicContext.jsx";
+import CartItem from "./CartItem";
+import { FirestoreContext } from "./contextes/FirebaseFirestoreContext";
 
 const CartFav = () => {
   //Getting data from state
-  const { authName, authImage } = useContext(AuthContext)
-  const { closeCart, setCloseCart } = useContext(LogicContx)
-  const { data } = useContext(FirestoreContext)
+  const { authName, authImage } = useContext(AuthContext);
+  const { closeCart, setCloseCart } = useContext(LogicContx);
+  const { data } = useContext(FirestoreContext);
   // console.log(data[0]?.map((x) => x.title))
-  const IDhelper = 1000
+  const IDhelper = 1000;
   return (
     <>
       <div
         className={closeCart ? style.background : style.hide}
-        onClick={() => setCloseCart(false)}
+        onClick={(e) => {
+          e.preventDefault();
+          setCloseCart(false);
+        }}
       ></div>
       <div
         className={`${style.cartContainer} ${
@@ -133,7 +136,7 @@ const CartFav = () => {
         <button className={style.buy}>Buy!!!!</button>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default CartFav
+export default CartFav;

@@ -1,16 +1,17 @@
-"use client"
+"use client";
 
-import React, { useContext } from "react"
-import style from "../../styles/module-styles/product-info.module.scss"
-import { LogicContx } from "@/app/components/contextes/LogicContext"
-import { FirestoreContext } from "@/app/components/contextes/FirebaseFirestoreContext"
-import { useRouter } from "next/navigation"
+import React, { useContext } from "react";
+import style from "../../styles/module-styles/product-info.module.scss";
+import { LogicContx } from "@/app/components/contextes/LogicContext";
+import { FirestoreContext } from "@/app/components/contextes/FirebaseFirestoreContext";
+import { useRouter } from "next/navigation";
 const ProductInfo = (itemDetails) => {
   //Too lazy to destrucutre 👌
-  const { setCartChangeColor, setFavChangeColor } = useContext(LogicContx)
-  const { addToShopCart, addToFav, authUid } = useContext(FirestoreContext)
+  const { setCartChangeColor, setFavChangeColor, toastFn } =
+    useContext(LogicContx);
+  const { addToShopCart, addToFav, authUid } = useContext(FirestoreContext);
 
-  const { push } = useRouter()
+  const { push } = useRouter();
   return (
     <>
       <div className={style.productInfo}>
@@ -28,16 +29,24 @@ const ProductInfo = (itemDetails) => {
                 onClick={
                   authUid
                     ? async () => {
-                        setFavChangeColor(true)
+                        setFavChangeColor(true);
                         addToFav({
                           title: itemDetails.title,
                           image: itemDetails.image,
                           price: itemDetails.price,
                           quantity: 1,
-                        })
+                        });
+                        toastFn(
+                          true,
+                          `${itemDetails.title} is successfuly added to favorites`
+                        );
                       }
                     : () => {
-                        push("/signin")
+                        push("/signin");
+                        toastFn(
+                          false,
+                          "Please create account to add items to cart"
+                        );
                       }
                 }
               >
@@ -48,16 +57,24 @@ const ProductInfo = (itemDetails) => {
                 onClick={
                   authUid
                     ? async () => {
-                        setCartChangeColor(true)
+                        setCartChangeColor(true);
                         addToShopCart({
                           title: itemDetails.title,
                           image: itemDetails.image,
                           price: itemDetails?.price,
                           quantity: 1,
-                        })
+                        });
+                        toastFn(
+                          true,
+                          `${itemDetails.title} is successfuly added to cart`
+                        );
                       }
                     : () => {
-                        push("/signin")
+                        push("/signin");
+                        toastFn(
+                          false,
+                          "Please create account to add items to cart"
+                        );
                       }
                 }
               >
@@ -68,7 +85,7 @@ const ProductInfo = (itemDetails) => {
         </section>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ProductInfo
+export default ProductInfo;

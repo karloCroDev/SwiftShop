@@ -5,8 +5,7 @@ import LogicContext from "./components/contextes/LogicContext.jsx";
 import CartFav from "./components/CartFav";
 import Popup from "./components/Popup";
 import FirebaseFirestoreContext from "./components/contextes/FirebaseFirestoreContext";
-import Toast from "./components/Toast";
-
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -24,8 +23,7 @@ export default function RootLayout({ children }) {
               {children}
               <CartFav />
               <Popup />
-              {/* <Toast /> */}
-              {/* Setted on all pages */}
+              <Toaster />
             </FirebaseFirestoreContext>
           </FirebseAuthContext>
         </LogicContext>

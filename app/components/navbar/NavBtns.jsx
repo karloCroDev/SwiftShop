@@ -3,10 +3,12 @@ import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { AuthContext } from "../contextes/FirebseAuthContext.jsx";
 import { LogicContx } from "../contextes/LogicContext.jsx";
+
 import styles from "../../styles/module-styles/navbar.module.scss";
 
 const NavBtns = () => {
   const { authName } = useContext(AuthContext);
+
   const router = useRouter();
 
   const checkIfUserExists = () => {

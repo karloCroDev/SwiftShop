@@ -115,3 +115,10 @@ footer {
 a {
   all: unset;
 }
+
+.toast-message {
+  color: $text !important;
+  background-color: $light-blue !important;
+
+  //Need to override the default styling of toast message using !important
+}

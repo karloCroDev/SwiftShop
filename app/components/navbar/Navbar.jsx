@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "../../styles/module-styles/navbar.module.scss";
 import Link from "next/link";
 import SignOutBtn from "./SignOutBtn";
