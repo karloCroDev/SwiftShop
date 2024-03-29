@@ -13,13 +13,13 @@ const CartFav = () => {
   const { closeCart, setCloseCart } = useContext(LogicContx);
   const { data } = useContext(FirestoreContext);
   // console.log(data[0]?.map((x) => x.title))
+
   const IDhelper = 1000;
   return (
     <>
       <div
         className={closeCart ? style.background : style.hide}
-        onClick={(e) => {
-          e.preventDefault();
+        onClick={() => {
           setCloseCart(false);
         }}
       ></div>

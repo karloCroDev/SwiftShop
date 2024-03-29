@@ -20,7 +20,7 @@ export const FirestoreContext = createContext();
 const FirebaseFirestoreContext = ({ children }) => {
   //Contextes
   const { authUid } = useContext(AuthContext);
-  const { favChangeColor, cartChangeColor } = useContext(LogicContx);
+  const { favChangeColor, cartChangeColor, closeCart } = useContext(LogicContx);
   //Feedback
   const feedback = async (email, content) => {
     await setDoc(doc(db, "feedback", authUid), {
@@ -147,7 +147,7 @@ const FirebaseFirestoreContext = ({ children }) => {
     if (authUid !== "") {
       getData();
     }
-  }, [favChangeColor, cartChangeColor, authUid]);
+  }, [favChangeColor, cartChangeColor, authUid, closeCart]);
 
   return (
     <>
@@ -160,7 +160,6 @@ const FirebaseFirestoreContext = ({ children }) => {
           removeItem,
           authUid,
           updateQuantity,
-          getData, //I had to add this because of some unexpected error with items when I click the div to exit the cart and fav
         }}
       >
         {children}
