@@ -6,6 +6,7 @@ import { AuthContext } from "./contextes/FirebseAuthContext.jsx";
 import { LogicContx } from "./contextes/LogicContext.jsx";
 import CartItem from "./CartItem";
 import { FirestoreContext } from "./contextes/FirebaseFirestoreContext";
+import { Toaster } from "react-hot-toast";
 
 const CartFav = () => {
   //Getting data from state
@@ -22,7 +23,9 @@ const CartFav = () => {
         onClick={() => {
           setCloseCart(false);
         }}
-      ></div>
+      >
+        <Toaster />
+      </div>
       <div
         className={`${style.cartContainer} ${
           closeCart ? style.showContainer : style.hideContainer
@@ -133,7 +136,14 @@ const CartFav = () => {
             ))}
           </div>
         </div>
-        <button className={style.buy}>Buy!!!!</button>
+        <button
+          className={style.buy}
+          onClick={() => {
+            setCloseCart(false);
+          }}
+        >
+          Buy!!!!
+        </button>
       </div>
     </>
   );

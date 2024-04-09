@@ -5,7 +5,7 @@ import { FirestoreContext } from "@/app/components/contextes/FirebaseFirestoreCo
 import { useRouter } from "next/navigation";
 import style from "../styles/module-styles/product-info.module.scss";
 
-const Btns = () => {
+const Btns = ({ itemDetails }) => {
   const { setCartChangeColor, setFavChangeColor, toastFn } =
     useContext(LogicContx);
   const { addToShopCart, addToFav, authUid } = useContext(FirestoreContext);

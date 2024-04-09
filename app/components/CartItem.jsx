@@ -6,7 +6,8 @@ import { LogicContx } from "./contextes/LogicContext";
 
 /////////
 const CartItem = ({ image, title, quantity, price, category }) => {
-  const { removeItem, updateQuantity } = useContext(FirestoreContext);
+  const { removeItem, updateQuantity, totalPrice, setTotalPrice } =
+    useContext(FirestoreContext);
   const { toastFn, closeCart } = useContext(LogicContx);
   const [countItem, setCountItem] = useState(quantity);
   const [doesElEx, setDoesElEx] = useState(true);
@@ -24,6 +25,7 @@ const CartItem = ({ image, title, quantity, price, category }) => {
         setDoesElEx(false);
         removeItem(category, title);
         toastFn(true, "Item succesfuly deleted");
+        setTotalPrice(totalPrice - price);
       }}
 
       //This prevents user from dragging text instead of item, I'ce got this classname from devTools(because of sass)
@@ -42,6 +44,7 @@ const CartItem = ({ image, title, quantity, price, category }) => {
               setDoesElEx(false);
               removeItem(category, title);
               toastFn(true, "Item succesfully deleted");
+              setTotalPrice(totalPrice - price);
               return;
             }
             updateQuantity(category, title, +countItem - 1);
@@ -55,6 +58,7 @@ const CartItem = ({ image, title, quantity, price, category }) => {
           onClick={() => {
             setCountItem(+countItem + 1); //DB returns string so this fixes
             updateQuantity(category, title, +countItem + 1); //I need to specify that is number, look into future why is that
+            setTotalPrice(totalPrice + price);
           }}
         >
           +

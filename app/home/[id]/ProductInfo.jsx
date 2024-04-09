@@ -16,7 +16,7 @@ const ProductInfo = (itemDetails) => {
           <div className={style.mainInfo}>
             <h2>Price: {itemDetails.price}$</h2>
             <div className={style.btnContainer}>
-              <Btns />
+              <Btns itemDetails={itemDetails} />
             </div>
           </div>
         </section>
