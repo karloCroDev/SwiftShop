@@ -1,7 +1,13 @@
 import React from "react";
-
+import Navbar from "../components/navbar/Navbar";
+import Checkout from "./Checkout";
 const page = () => {
-  return <div>Checkout</div>;
+  return (
+    <>
+      <Navbar />
+      <Checkout />
+    </>
+  );
 };
 
 export default page;

@@ -36,7 +36,9 @@ const CartItem = ({ image, title, quantity, price, category }) => {
       <div className={style.quantity}>
         <button
           className={style.count}
-          onClick={() => {
+          onDoubleClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
             setCountItem(+countItem - 1);
             if (+countItem <= 1) {
               setDoesElEx(false);
@@ -52,10 +54,12 @@ const CartItem = ({ image, title, quantity, price, category }) => {
         <h2>{countItem}</h2>
         <button
           className={style.count}
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setCountItem(+countItem + 1); //DB returns string so this fixes
             updateQuantity(category, title, +countItem + 1); //I need to specify that is number, look into future why is that
           }}
+          onDoubleClick={(e) => e.stopPropagation()} //If user clicks twice
         >
           +
         </button>

@@ -7,7 +7,7 @@
   width: 100%;
   height: 100vh;
   background-color: $item-color;
-  z-index: 99999;
+  z-index: 1;
 }
 .cartContainer {
   width: 500px;
@@ -16,13 +16,14 @@
   right: 0;
   top: 0;
   background-color: whitesmoke;
-  z-index: 99999999;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: $secondary;
   transform: translateX(500px);
   transition: transform 500ms linear;
+  border-radius: 20px 0px 0px 20px;
   * {
     font-family: $title-sec;
     // font-size: ;
@@ -137,7 +138,7 @@
   // cursor: pointer;
   * {
     font-family: $text-fam;
-    z-index: 2;
+    z-index: 4;
   }
   h3 {
     font-size: 22px;
