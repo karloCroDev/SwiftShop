@@ -1,5 +1,6 @@
 "use client";
 import {
+  addDoc,
   arrayUnion,
   collection,
   count,
@@ -30,32 +31,33 @@ const FirebaseFirestoreContext = ({ children }) => {
   };
 
   ///
-  const createCND = async () => {
-    try {
-      const q = query(
-        collection(db, "not-ordered"),
-        where("uid", "==", authUid)
-      );
-      console.log(q);
-      console.log(authUid);
-      const doesDocExists = await getDocs(q);
-      console.log(doesDocExists);
-      if (doesDocExists.size === 0) {
-        await setDoc(doc(db, "not-ordered", authUid), {
-          cart: [],
-          favorites: [],
-          uid: authUid,
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  // useEffect(() => {
-  //   if (authUid !== null) {
-  //     createCND()
+  // const createCND = async () => {
+  //   try {
+  //     const q = query(
+  //       collection(db, "not-ordered"),
+  //       where("uid", "==", authUid)
+  //     );
+  //     console.log(q);
+  //     console.log(authUid);
+  //     const doesDocExists = await getDocs(q);
+  //     console.log(doesDocExists);
+  //     if (doesDocExists.size === 0) {
+  //       await setDoc(doc(db, "not-ordered", authUid), {
+  //         cart: [],
+  //         favorites: [],
+  //         uid: authUid,
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
   //   }
-  // }, [authUid])
+  // };
+  // // useEffect(() => {
+  // //   if (authUid !== null) {
+  // //     createCND()
+  // //   }
+  // // }, [authUid])
+
   const addToShopCart = async (cart) => {
     await updateDoc(doc(db, "not-ordered", authUid), {
       cart: arrayUnion(cart),
@@ -149,6 +151,25 @@ const FirebaseFirestoreContext = ({ children }) => {
     }
   }, [favChangeColor, cartChangeColor, authUid, closeCart]);
 
+  const order = async (
+    name,
+    lastName,
+    country,
+    address,
+    phoneNumber,
+    additionaEmail,
+    price
+  ) => {
+    await addDoc(collection(db, "orders"), {
+      name: name,
+      lastName: lastName,
+      country: country,
+      address: address,
+      phoneNumber: phoneNumber,
+      additionaEmail: additionaEmail,
+      price: price,
+    });
+  };
   return (
     <>
       <FirestoreContext.Provider
@@ -160,6 +181,7 @@ const FirebaseFirestoreContext = ({ children }) => {
           removeItem,
           authUid,
           updateQuantity,
+          order,
         }}
       >
         {children}

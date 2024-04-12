@@ -7,7 +7,7 @@
   display: grid;
   place-items: center;
 
-  article {
+  form {
     height: 600px;
     aspect-ratio: 4 / 3;
     background-color: $secondary;
@@ -15,80 +15,85 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-  }
-  .userInfo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    height: 100px;
-    width: 100%;
-    border-bottom: 2px solid $light-blue;
-    padding: 0px 10px;
 
-    h1 {
-      font-size: 50px;
-      height: 100%;
-    }
-    img {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-    }
-  }
-  .total {
-    border-top: 2px solid $light-blue;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: 0px 10px;
-    h2 {
-      margin-bottom: 12px; //looks nicer
-    }
-    button {
-      width: 150px;
-      height: 50px;
-      border-radius: 8px;
-      font-size: 20px;
-      outline: none;
-      background-color: $orange;
-      color: $text;
-      border: none;
-      cursor: pointer;
-
-      &:active {
-        scale: 0.9;
-      }
-    }
-  }
-
-  .mainContent {
-    padding: 25px 30px;
-    flex-grow: 2;
-    display: grid;
-    align-content: center;
-    grid-template-columns: auto auto;
-    grid-template-rows: 100px 100px 100px;
-    column-gap: 50px;
-    align-items: start;
-    div {
+    .userInfo {
       display: flex;
-      justify-content: center;
-      flex-direction: column;
-      gap: 5px;
-      label {
-        font-size: 18px;
-      }
-      input {
-        height: 40px;
-        border-radius: 8px;
-        border: none;
-        background-color: $primary-background;
+      align-items: center;
+      gap: 15px;
+      height: 100px;
+      width: 100%;
+      border-bottom: 2px solid $light-blue;
+      padding: 0px 10px;
 
+      h1 {
+        font-size: 50px;
+        height: 100%;
+      }
+      img {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+      }
+    }
+    .total {
+      border-top: 2px solid $light-blue;
+      width: 100%;
+      height: 80px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0px 10px;
+      h2 {
+        margin-bottom: 12px; //looks nicer
+      }
+      button {
+        width: 150px;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 20px;
         outline: none;
-        padding-left: 10px;
+        background-color: $orange;
         color: $text;
+        border: none;
+        cursor: pointer;
+
+        &:active {
+          scale: 0.9;
+        }
+      }
+    }
+
+    .mainContent {
+      padding: 25px 30px;
+      flex-grow: 2;
+      display: grid;
+      align-content: center;
+      grid-template-columns: auto auto;
+      grid-template-rows: 100px 100px 100px;
+      column-gap: 50px;
+      align-items: start;
+      div {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        label {
+          font-size: 18px;
+          cursor: pointer;
+        }
+        input,
+        select {
+          height: 40px;
+          border-radius: 8px;
+          border: none;
+          background-color: $primary-background;
+          outline: none;
+          padding-left: 10px;
+          color: $text;
+        }
+        select {
+          padding-left: 5px; //too lazy to make mixin
+        }
       }
     }
   }
