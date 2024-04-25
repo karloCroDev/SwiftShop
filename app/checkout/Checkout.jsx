@@ -44,6 +44,7 @@ const Checkout = () => {
               const address = e.target[3].value;
               const phoneNumber = e.target[4].value;
               const additionaEmail = e.target[5].value;
+
               await order(
                 name,
                 lastName,

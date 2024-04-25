@@ -1,12 +1,13 @@
 "use client";
 import React, { useContext } from "react";
 import { AuthContext } from "../contextes/FirebseAuthContext.jsx";
+import { GoSignOut } from "react-icons/go";
 
 const SignOutBtn = () => {
   const { authName, signOutUsr } = useContext(AuthContext);
 
   return authName !== "" ? (
-    //Later I switched to react icons which is much nicer than getting and converting svg from internet
+    //Wanted to have some custom svg because it looks nicer
     <svg
       xmlns="http://www.w3.org/2000/svg"
       data-name="Flat Line"
