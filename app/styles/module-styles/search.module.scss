@@ -1,0 +1,46 @@
+@import "../styleHlp/variables.scss";
+
+.serach {
+  .popover {
+    position: absolute; //So it doesn't affect the position
+    width: 215px;
+    height: 400px;
+    background-color: $secondary;
+    margin-top: -25px;
+    padding-top: 25px;
+    border-radius: 0px 0px 20px 20px;
+    z-index: -1;
+    transition: height 200ms ease-in;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+  }
+  .hide {
+    height: 0px; //because of animation so this is like this animated
+    padding-top: 0px;
+  }
+
+  li {
+    width: 215px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    img {
+      height: 100%;
+      min-width: 60px;
+      max-width: 60px;
+      object-fit: contain;
+    }
+    p {
+      max-width: 100px;
+      text-align: center;
+      font-size: 10px;
+    }
+    span {
+      width: 25px;
+      font-size: 10px;
+    }
+  }
+}

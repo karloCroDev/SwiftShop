@@ -38,6 +38,8 @@ const LogicContext = ({ children }) => {
     setShowPopup(state);
   };
 
+  /////
+  const [items, setItems] = useState([]);
   return (
     <>
       <LogicContx.Provider
@@ -52,6 +54,8 @@ const LogicContext = ({ children }) => {
           setCartChangeColor,
           showPopupFunc,
           toastFn,
+          setItems,
+          items,
         }}
       >
         {children}

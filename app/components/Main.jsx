@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../styles/module-styles/main.module.scss";
 import Link from "next/link";
-
+import Passer from "./Passer.jsx";
 const getProducts = async () => {
   try {
     const api = await fetch("https://fakestoreapi.com/products");
@@ -79,6 +79,7 @@ const Main = async () => {
         </h2>
         <div className={style.row}>{filtredItem(electronics)}</div>
       </div>
+      <Passer products={products} />
     </>
   );
 };
