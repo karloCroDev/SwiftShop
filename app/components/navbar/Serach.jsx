@@ -1,38 +1,59 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import style from "../../styles/module-styles/search.module.scss";
 import { CiSearch } from "react-icons/ci";
 import { LogicContx } from "../contextes/LogicContext";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 const Serach = () => {
   const [show, setShow] = useState(false);
+  const [itemSelected, setIsItemSelected] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const { items } = useContext(LogicContx);
+  const { push } = useRouter();
+
+  const inputSelected = (e) => {
+    e.target === document.activeElement
+      ? setShow(true)
+      : setTimeout(() => setShow(false), 400); //Fix this imediatelly
+  };
 
   return (
     <>
-      <div className={style.serach} onClick={() => setShow(!show)}>
+      <div className={style.serach}>
         <CiSearch />
         <input
           type="text"
           placeholder="Search products"
-          onChange={(e) => setInputVal(e.target.value)}
+          onFocus={inputSelected}
+          onBlur={inputSelected}
+          onChange={(e) => {
+            const text = e.target.value;
+            setInputVal(text);
+            // text.length > 0 ? setShow(true) : setShow(false);
+          }}
         />
-        <ul
-          id="item-popover"
-          className={`${!show ? style.hide : null} ${style.popover}`}
-        >
+        <ul className={`${!show ? style.hide : null} ${style.popover}`}>
           {show
             ? items.map((itm, i) => {
-                if (itm?.title.includes(inputVal)) {
+                if (itm?.title.toLowerCase().includes(inputVal.toLowerCase())) {
                   return (
-                    <Link href={`home/${i + 1}`}>
-                      <li>
+                    <li
+                      onClick={() => {
+                        push(`/home/${i + 1}`);
+                      }}
+                      key={i}
+                    >
+                      <div>
                         <img src={itm.image} alt={itm.category} />
-                        <p>{itm.title}</p>
-                        <span>{itm.price}$</span>
-                      </li>
-                    </Link>
+                      </div>
+                      <p>
+                        {itm.title
+                          .split(" ")
+                          .map((x, i) => (i <= 5 ? x + " " : null))}
+                      </p>
+                      <span>{itm.price}$</span>
+                    </li>
                   );
                 }
               })

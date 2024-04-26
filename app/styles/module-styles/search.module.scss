@@ -1,46 +1,76 @@
 @import "../styleHlp/variables.scss";
-
+@import "../styleHlp/mixins.scss";
 .serach {
   .popover {
     position: absolute; //So it doesn't affect the position
-    width: 215px;
-    height: 400px;
+    width: 230px;
+
+    height: 450px;
     background-color: $secondary;
     margin-top: -25px;
-    padding-top: 25px;
+    padding-top: 35px;
     border-radius: 0px 0px 20px 20px;
     z-index: -1;
     transition: height 200ms ease-in;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    padding-bottom: none;
   }
   .hide {
     height: 0px; //because of animation so this is like this animated
     padding-top: 0px;
   }
-
+  .border {
+    border: 2px solid $orange;
+  }
+  ul {
+    gap: 5px;
+  }
   li {
-    width: 215px;
+    width: 100%;
     height: 100px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 0px;
-    img {
+    justify-content: space-around;
+    cursor: pointer;
+    border-bottom: 2px solid $placeholder;
+
+    &:hover {
+      @include action-buttton;
+      scale: 0.95;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+    img,
+    p,
+    span {
+      width: calc(100% / 4);
       height: 100%;
-      min-width: 60px;
-      max-width: 60px;
+    }
+    img {
+      min-width: 70px;
+      max-width: 70px;
+      height: 100px;
+      background-color: $text;
       object-fit: contain;
     }
     p {
-      max-width: 100px;
+      height: auto; //it's good enough
+      overflow-wrap: break-word;
+      text-wrap: balance;
+      flex-grow: 2;
+      font-size: 12px;
       text-align: center;
-      font-size: 10px;
     }
     span {
-      width: 25px;
-      font-size: 10px;
+      height: 100px;
+      width: 40px;
+      display: grid;
+      place-items: center;
+      flex-grow: 1;
+      font-size: 12px;
     }
   }
 }

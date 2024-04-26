@@ -10,7 +10,7 @@
   //   border: 2px solid #fff;
 
   input {
-    width: 215px;
+    width: 230px;
     height: 58px;
     border-radius: 50px;
     background-color: $secondary;
@@ -24,7 +24,7 @@
       font-size: 13px;
     }
     &:focus {
-      outline: none;
+      outline: 2px solid $orange;
     }
   }
   svg {
