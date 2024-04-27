@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 const Serach = () => {
   const [show, setShow] = useState(false);
-  const [itemSelected, setIsItemSelected] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const { items } = useContext(LogicContx);
   const { push } = useRouter();
@@ -15,7 +14,7 @@ const Serach = () => {
   const inputSelected = (e) => {
     e.target === document.activeElement
       ? setShow(true)
-      : setTimeout(() => setShow(false), 400); //Fix this imediatelly
+      : setTimeout(() => setShow(false), 100); //animation looks smmoother imo
   };
 
   return (
@@ -23,16 +22,17 @@ const Serach = () => {
       <div className={style.serach}>
         <CiSearch />
         <input
-          type="text"
-          placeholder="Search products"
           onFocus={inputSelected}
           onBlur={inputSelected}
+          type="text"
+          placeholder="Search products"
           onChange={(e) => {
             const text = e.target.value;
             setInputVal(text);
             // text.length > 0 ? setShow(true) : setShow(false);
           }}
         />
+
         <ul className={`${!show ? style.hide : null} ${style.popover}`}>
           {show
             ? items.map((itm, i) => {
@@ -57,7 +57,7 @@ const Serach = () => {
                   );
                 }
               })
-            : null}
+            : false}
         </ul>
       </div>
     </>

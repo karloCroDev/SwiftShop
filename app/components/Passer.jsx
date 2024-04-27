@@ -6,7 +6,7 @@ import { LogicContx } from "./contextes/LogicContext";
 const Passer = ({ products }) => {
   const { items, setItems } = useContext(LogicContx);
   useEffect(() => {
-    setItems(products); //I only need to render it once
+    setItems(products); //I want to minimize api calls
     console.log(products);
   }, []);
   return null;

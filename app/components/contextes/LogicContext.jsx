@@ -1,13 +1,15 @@
 "use client";
-import React, { createContext, useRef, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import "../../styles/global-style.scss";
 
 import toast from "react-hot-toast";
+import { useParams, useRouter } from "next/navigation";
 
 //////
 export const LogicContx = createContext();
 
 const LogicContext = ({ children }) => {
+  const { push } = useRouter();
   const toastFn = (state, text) => {
     state
       ? toast.success(text, {
@@ -37,7 +39,11 @@ const LogicContext = ({ children }) => {
     }
     setShowPopup(state);
   };
-
+  const params = useParams();
+  useEffect(() => {
+    console.log(params);
+    if (Object.keys(params).length > 0) push("/"); //this is so that searchbar could work because I wanted to miniize the api calls
+  }, []);
   /////
   const [items, setItems] = useState([]);
   return (
