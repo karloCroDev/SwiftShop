@@ -14,7 +14,7 @@ const ProductInfo = (itemDetails) => {
             <b>Description:</b> {itemDetails.description}.
           </p>
           <div className={style.mainInfo}>
-            <h2>Price: {itemDetails.price}$</h2>
+            <h2>Price: {Math.round(itemDetails.price)}$</h2>
             <div className={style.btnContainer}>
               <Btns itemDetails={itemDetails} />
             </div>

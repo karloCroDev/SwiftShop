@@ -4,9 +4,10 @@ import style from "../styles/module-styles/auth.module.scss";
 import Link from "next/link";
 import { AuthContext } from "../components/contextes/FirebseAuthContext.jsx";
 import { useRouter } from "next/navigation";
-
+import LoaderAnimation from "react-spinners/ClipLoader";
 const Signin = () => {
   const { signIn } = useContext(AuthContext);
+  const [loader, setLoader] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -40,7 +41,9 @@ const Signin = () => {
         <form
           onSubmit={async (e) => {
             e.preventDefault();
+            setLoader(true);
             await signIn(email, password);
+            setLoader(false);
           }}
           className={style.formSign}
         >
@@ -67,11 +70,17 @@ const Signin = () => {
             />
           </div>
           <div className={style.final}>
-            <button>Sign in!</button>
+            <button>
+              {!loader ? (
+                "Sign in!"
+              ) : (
+                <LoaderAnimation size={20} color="#61707b" />
+              )}
+            </button>
             <p>
               Don't have an account?
               <span>
-                <Link href="/signup"> Sign up!</Link>
+                <Link href="/signup">Sign up!</Link>
               </span>
             </p>
           </div>

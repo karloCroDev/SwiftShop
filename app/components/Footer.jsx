@@ -1,15 +1,16 @@
-"use client"
-import React, { useContext, useState } from "react"
-import style from "../styles/module-styles/footer.module.scss"
-import { AuthContext } from "./contextes/FirebseAuthContext"
-import { FirestoreContext } from "./contextes/FirebaseFirestoreContext"
-import { IoIosSend } from "react-icons/io"
+"use client";
+import React, { useContext, useRef } from "react";
+import style from "../styles/module-styles/footer.module.scss";
+import { AuthContext } from "./contextes/FirebseAuthContext";
+import { FirestoreContext } from "./contextes/FirebaseFirestoreContext";
+import { IoIosSend } from "react-icons/io";
 
 const Footer = () => {
-  const { authName, authEmail } = useContext(AuthContext)
-  const { feedback } = useContext(FirestoreContext)
-  const [email, setEmail] = useState("")
-  const [content, setContent] = useState("")
+  const { authName, authEmail } = useContext(AuthContext);
+  const { feedback } = useContext(FirestoreContext);
+  const email = useRef();
+  const textarea = useRef();
+  //need to clean up email and the footer also in the ui and this is more convinient way
   return (
     <>
       <footer>
@@ -27,7 +28,6 @@ const Footer = () => {
                   type="text"
                   id="emailId"
                   placeholder="Enter your email..."
-                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             ) : (
@@ -45,18 +45,16 @@ const Footer = () => {
                 name="textarea field"
                 id="textareaId"
                 placeholder="Enter your message..."
-                onChange={(e) => setContent(e.target.value)}
+                ref={textarea}
               ></textarea>
               <button
                 onClick={async () => {
-                  if (
-                    authEmail === "" &&
-                    email.length > 0 &&
-                    !email.includes("@")
-                  )
-                    return //make toast message
-                  await feedback(authEmail !== "" ? authEmail : email, content)
-                  setContent("")
+                  await feedback(
+                    authEmail ? authEmail : email.current.value, //could have used logical or but this is more readable imo
+                    textarea.current.value
+                  );
+                  !authEmail ? (email.current.value = "") : null;
+                  textarea.current.value = "";
                 }}
               >
                 <IoIosSend className={style.svg} />
@@ -66,7 +64,7 @@ const Footer = () => {
         </div>
       </footer>
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

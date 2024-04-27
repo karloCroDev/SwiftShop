@@ -5,22 +5,27 @@ import { AuthContext } from "../components/contextes/FirebseAuthContext";
 import { FirestoreContext } from "../components/contextes/FirebaseFirestoreContext";
 import { useRouter } from "next/navigation";
 import { LogicContx } from "../components/contextes/LogicContext";
+import LoaderAnimation from "react-spinners/ClipLoader";
+
 const Checkout = () => {
   const { authName, authImage } = useContext(AuthContext);
   const { order, data } = useContext(FirestoreContext);
   const { toastFn } = useContext(LogicContx);
   const { push } = useRouter();
-  const [processPayment, setProcessPayment] = useState(false);
-  const [price, setPrice] = useState([]);
+  const [loader, setLoader] = useState(false);
+  const [price, setPrice] = useState(0);
+
   useEffect(() => {
     if (data.length > 0) {
       setPrice(
         data[0].reduce(
           (acc, itm) => {
-            return (
-              (acc + itm.price.integerValue
-                ? +itm.price.integerValue
-                : +itm.price.doubleValue) * +itm.quantity.integerValue
+            return Math.round(
+              acc +
+                (+itm.price.integerValue
+                  ? +itm.price.integerValue
+                  : +itm.price.doubleValue) *
+                  +itm.quantity.integerValue
             );
           }, //Number instead of + because it is more easy to read
           0
@@ -36,7 +41,7 @@ const Checkout = () => {
         <form
           onSubmit={async (e) => {
             e.preventDefault();
-            setProcessPayment(true);
+            setLoader(true);
             try {
               const name = e.target[0].value;
               const lastName = e.target[1].value;
@@ -44,7 +49,11 @@ const Checkout = () => {
               const address = e.target[3].value;
               const phoneNumber = e.target[4].value;
               const additionaEmail = e.target[5].value;
+              if (price === 0) {
+                toastFn(false, "You must order something to place your order");
 
+                return;
+              }
               await order(
                 name,
                 lastName,
@@ -55,13 +64,12 @@ const Checkout = () => {
                 price
               );
               push("/");
-
+              setLoader(false);
               toastFn(true, "Your order is successfuly placed");
             } catch (error) {
               console.error(error);
               toastFn(false, "Please try again something is wrong ");
             }
-            // orderFn();
           }}
         >
           <div className={style.userInfo}>
@@ -126,7 +134,9 @@ const Checkout = () => {
           </div>
           <div className={style.total}>
             <h2>Total: {price}$</h2>
-            <button>{processPayment ? "..." : "Buy"}</button>
+            <button>
+              {loader ? <LoaderAnimation size={20} color="#d9d9d9" /> : "Buy"}
+            </button>
           </div>
         </form>
       </div>

@@ -75,6 +75,7 @@ const FirebseAuthContext = ({ children }) => {
       toastFn(false, "Please check your credentials, try again");
     }
   };
+
   const signUp = async (username, email, password) => {
     try {
       const signUpUser = await createUserWithEmailAndPassword(
@@ -94,6 +95,7 @@ const FirebseAuthContext = ({ children }) => {
       toastFn(false, "Please check your credentials, try again");
     }
   };
+
   const signOutUsr = async () => {
     try {
       await signOut(auth);

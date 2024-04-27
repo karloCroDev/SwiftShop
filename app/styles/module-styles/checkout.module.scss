@@ -71,7 +71,7 @@
       grid-template-columns: auto auto;
       grid-template-rows: 100px 100px 100px;
       column-gap: 50px;
-      align-items: start;
+      align-items: flex-start;
       div {
         display: flex;
         justify-content: center;

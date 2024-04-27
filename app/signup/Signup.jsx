@@ -1,15 +1,17 @@
-"use client"
-import React, { useContext, useState } from "react"
-import style from "../styles/module-styles/auth.module.scss"
-import Link from "next/link"
-import { AuthContext } from "../components/contextes/FirebseAuthContext.jsx"
+"use client";
+import React, { useContext, useState } from "react";
+import style from "../styles/module-styles/auth.module.scss";
+import Link from "next/link";
+import LoaderAnimation from "react-spinners/ClipLoader";
+
+import { AuthContext } from "../components/contextes/FirebseAuthContext.jsx";
 
 const Signup = () => {
-  const { signUp } = useContext(AuthContext)
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
+  const { signUp } = useContext(AuthContext);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState("");
   return (
     <>
       <div className={style.align}>
@@ -38,13 +40,15 @@ const Signup = () => {
       <div>
         <form
           onSubmit={async (e) => {
-            e.preventDefault()
+            e.preventDefault();
             if (username.length >= 4 && username.length <= 12) {
-              await signUp(username, email, password)
+              setLoader(true);
+              await signUp(username, email, password);
+              setLoader(false);
             } else {
               alert(
                 "Your username must contain atleast 4 charchters and maximum of 12  "
-              )
+              );
             }
           }}
           className={style.formSignTwo}
@@ -81,7 +85,13 @@ const Signup = () => {
             />
           </div>
           <div className={style.final}>
-            <button>Sign up!</button>
+            <button>
+              {loader ? (
+                <LoaderAnimation size={20} color="#61707b" />
+              ) : (
+                "Sign up!"
+              )}
+            </button>
             <p>
               Don't have an account?
               <span>
@@ -92,7 +102,7 @@ const Signup = () => {
         </form>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

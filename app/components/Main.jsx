@@ -32,7 +32,7 @@ const Main = async () => {
           <article>
             <img src={itm.image} alt="Image of the product" />
             <h3>Product: {title}</h3>
-            <h3>Price: {itm.price}$</h3>
+            <h3>Price: {Math.round(itm.price)}$</h3>
           </article>
         </Link>
       );

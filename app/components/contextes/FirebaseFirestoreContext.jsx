@@ -16,12 +16,14 @@ import React, { createContext, useEffect, useContext, useState } from "react";
 import { db } from "../firebase/Firebase";
 import { AuthContext } from "./FirebseAuthContext";
 import { LogicContx } from "./LogicContext";
+
 export const FirestoreContext = createContext();
 
 const FirebaseFirestoreContext = ({ children }) => {
   //Contextes
-  const { authUid } = useContext(AuthContext);
-  const { favChangeColor, cartChangeColor, closeCart } = useContext(LogicContx);
+  const { authUid, authEmail } = useContext(AuthContext);
+  const { favChangeColor, cartChangeColor, closeCart, toastFn } =
+    useContext(LogicContx);
   //Feedback
   const feedback = async (email, content) => {
     await setDoc(doc(db, "feedback", authUid), {
@@ -30,33 +32,32 @@ const FirebaseFirestoreContext = ({ children }) => {
     });
   };
 
-  ///
-  // const createCND = async () => {
-  //   try {
-  //     const q = query(
-  //       collection(db, "not-ordered"),
-  //       where("uid", "==", authUid)
-  //     );
-  //     console.log(q);
-  //     console.log(authUid);
-  //     const doesDocExists = await getDocs(q);
-  //     console.log(doesDocExists);
-  //     if (doesDocExists.size === 0) {
-  //       await setDoc(doc(db, "not-ordered", authUid), {
-  //         cart: [],
-  //         favorites: [],
-  //         uid: authUid,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // // useEffect(() => {
-  // //   if (authUid !== null) {
-  // //     createCND()
-  // //   }
-  // // }, [authUid])
+  const createCND = async () => {
+    try {
+      const q = query(
+        collection(db, "not-ordered"),
+        where("uid", "==", authUid)
+      );
+      console.log(q);
+      console.log(authUid);
+      const doesDocExists = await getDocs(q);
+      console.log(doesDocExists);
+      if (doesDocExists.size === 0) {
+        await setDoc(doc(db, "not-ordered", authUid), {
+          cart: [],
+          favorites: [],
+          uid: authUid,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    if (authUid !== null) {
+      createCND();
+    }
+  }, [authUid]);
 
   const addToShopCart = async (cart) => {
     await updateDoc(doc(db, "not-ordered", authUid), {
@@ -150,7 +151,7 @@ const FirebaseFirestoreContext = ({ children }) => {
       getData();
     }
   }, [favChangeColor, cartChangeColor, authUid, closeCart]);
-
+  console.log(data);
   const order = async (
     name,
     lastName,
@@ -160,15 +161,27 @@ const FirebaseFirestoreContext = ({ children }) => {
     additionaEmail,
     price
   ) => {
-    await addDoc(collection(db, "orders"), {
-      name: name,
-      lastName: lastName,
-      country: country,
-      address: address,
-      phoneNumber: phoneNumber,
-      additionaEmail: additionaEmail,
-      price: price,
-    });
+    try {
+      await addDoc(collection(db, "orders"), {
+        email: authEmail,
+        name: name,
+        lastName: lastName,
+        country: country,
+        address: address,
+        phoneNumber: phoneNumber,
+        additionaEmail: additionaEmail,
+        price: price,
+        itemsToDeliver: data[0],
+      });
+
+      await updateDoc(doc(db, "not-ordered", authUid), {
+        cart: [],
+      });
+      toastFn(true, "Your order is successfuly placed");
+    } catch (error) {
+      console.error(error);
+      toastFn(false, "Please try again something is wrong ");
+    }
   };
   return (
     <>

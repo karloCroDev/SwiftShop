@@ -44,9 +44,8 @@ const Serach = () => {
                       }}
                       key={i}
                     >
-                      <div>
-                        <img src={itm.image} alt={itm.category} />
-                      </div>
+                      <img src={itm.image} alt={itm.category} />
+
                       <p>
                         {itm.title
                           .split(" ")
