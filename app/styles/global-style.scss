@@ -123,3 +123,73 @@ a {
   z-index: 999999 !important;
   //Need to override the default styling of toast message using !important
 }
+
+@media only screen and (min-width: 1400px) and (max-width: 1700px) {
+  body {
+    zoom: 0.8;
+  }
+  nav {
+    padding: 0 40px;
+    h1 {
+      width: 120px;
+      font-size: 40px;
+    }
+    > svg {
+      width: 60px;
+      height: 80px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1100px) and (max-width: 1400px) {
+  body {
+    zoom: 0.8;
+  }
+  nav {
+    padding: 0 40px;
+    zoom: 0.95;
+    h1 {
+      width: 135px;
+      font-size: 35px;
+    }
+    > svg {
+      width: 45px;
+      height: 60px;
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1200px) {
+  body {
+    zoom: 0.8;
+  }
+  nav {
+    padding: 0 40px;
+    zoom: 0.95;
+    h1 {
+      width: 135px;
+      font-size: 35px;
+    }
+    > svg {
+      width: 45px;
+      height: 60px;
+    }
+  }
+}
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+  nav {
+    a h1 {
+      font-size: 40px !important;
+    }
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  footer {
+    height: 300px;
+  }
+}

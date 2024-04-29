@@ -1,7 +1,7 @@
 @import "../styleHlp/variables.scss";
 .container {
   margin-top: 150px;
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 150px);
   display: grid;
   place-items: center;

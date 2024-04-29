@@ -85,3 +85,34 @@
   }
   margin-top: -50px; //temporary fix, don't do this I am more mature than doing this
 }
+
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+  .all {
+    .fieldContainer {
+      height: 100%;
+      width: 90%;
+      label {
+        font-size: 14px;
+      }
+      input {
+        height: 20px;
+      }
+      textarea {
+        height: 150px !important;
+      }
+      button {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      svg {
+        width: 20px !important; //I wrote poorly the initial design of footer so this is
+        height: 20px !important;
+      }
+    }
+    .info {
+      font-size: 18px;
+      text-align: center;
+      width: 90%;
+    }
+  }
+}

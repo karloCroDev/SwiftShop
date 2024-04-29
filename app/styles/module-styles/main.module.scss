@@ -80,3 +80,43 @@
     }
   }
 }
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+  .position {
+    width: 90%;
+    section {
+      width: 100%;
+      h2 {
+        font-size: 30px;
+      }
+
+      h3 {
+        font-size: 15px;
+      }
+    }
+    .row {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+
+      width: 90%;
+      gap: 20px;
+      width: 100%;
+      // position: relative;
+      article {
+        align-self: center;
+        width: 100%;
+        height: 400px;
+
+        display: flex;
+        flex-direction: column;
+
+        &:hover {
+          pointer-events: none;
+        }
+        img {
+          height: 280px;
+        }
+      }
+    }
+  }
+}
