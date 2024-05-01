@@ -16,24 +16,23 @@ const Popup = () => {
   //     setShowPopup(true)
   //   }, 15000)
   // }, [])
-  return null;
-  // <>
-  //   <aside className={showPopup ? style.show : style.hide}>
-  //     <div className={style.container}>
-  //       <h2 className={style.title}>
-  //         You like our products, then sign up/ sign in :)
-  //       </h2>
-  //       <div className={style.btnContainer}>
-  //         <Link href="/signup">
-  //           <button className={style.btn1}>Sign up</button>
-  //         </Link>
-  //         <Link href="/signin">
-  //           <button className={style.btn2}>Sign in</button>
-  //         </Link>
-  //       </div>
-  //     </div>
-  //   </aside>
-  // </>
+  return (
+    <aside className={showPopup ? style.show : style.hide}>
+      <div className={style.container}>
+        <h2 className={style.title}>
+          You like our products, then sign up/ sign in :)
+        </h2>
+        <div className={style.btnContainer}>
+          <Link href="/signup">
+            <button className={style.btn1}>Sign up</button>
+          </Link>
+          <Link href="/signin">
+            <button className={style.btn2}>Sign in</button>
+          </Link>
+        </div>
+      </div>
+    </aside>
+  );
 };
 
 export default Popup;

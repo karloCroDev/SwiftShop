@@ -19,13 +19,6 @@ const CartFav = () => {
   const { push } = useRouter();
   return (
     <>
-      {closeCart ? (
-        <IoMdClose
-          className={style.close}
-          onClick={() => setCloseCart(false)}
-        />
-      ) : null}
-
       <div
         className={closeCart ? style.background : style.hide}
         onClick={() => {
@@ -37,6 +30,12 @@ const CartFav = () => {
           closeCart ? style.showContainer : style.hideContainer
         }`}
       >
+        {closeCart ? (
+          <IoMdClose
+            className={style.close}
+            onClick={() => setCloseCart(false)}
+          />
+        ) : null}
         <header>
           <img src={authImage} className={style.image} />
           <h1>{authName}</h1>

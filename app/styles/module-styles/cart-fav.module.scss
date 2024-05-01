@@ -12,7 +12,7 @@
 .close {
   all: unset;
   display: none;
-  position: fixed;
+  position: absolute;
   z-index: 9999;
 }
 .cartContainer {
