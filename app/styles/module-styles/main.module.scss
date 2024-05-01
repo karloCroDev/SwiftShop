@@ -83,6 +83,7 @@
 @media only screen and (min-width: 300px) and (max-width: 500px) {
   .position {
     width: 85%;
+    margin-top: 100px;
     section {
       width: 100%;
       h2 {
@@ -119,6 +120,7 @@
         }
         &:hover {
           pointer-events: none;
+          background-color: none;
         }
         img {
           height: 300px;

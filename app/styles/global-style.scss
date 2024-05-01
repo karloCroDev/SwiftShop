@@ -179,6 +179,8 @@ a {
 }
 @media only screen and (min-width: 300px) and (max-width: 500px) {
   nav {
+    height: 100px;
+    top: 50px;
     a h1 {
       display: none;
       position: absolute;
@@ -194,5 +196,6 @@ a {
   }
   footer {
     height: 300px;
+    margin-top: 50px;
   }
 }

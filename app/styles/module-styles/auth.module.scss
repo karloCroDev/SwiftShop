@@ -105,3 +105,36 @@
   height: 675px;
   width: 575px;
 }
+
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+  .align h1 {
+    all: unset;
+    display: block;
+    font-size: 30px;
+    font-family: $title-fam;
+    align-self: center;
+  }
+  .formSign,
+  .formSignTwo {
+    height: 500px;
+    width: 90%;
+    margin-top: 20px;
+    h2 {
+      text-align: center;
+      font-size: 30px !important;
+    }
+    h4 {
+      font-size: 25px !important;
+    }
+    label {
+      font-size: 16px !important;
+    }
+  }
+  .formSignTwo {
+    height: 550px;
+    margin-top: 44px;
+    .inputContainer {
+      margin-top: -20px;
+    }
+  }
+}

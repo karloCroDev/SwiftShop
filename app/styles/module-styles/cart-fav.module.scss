@@ -9,13 +9,20 @@
   background-color: $item-color;
   z-index: 1;
 }
+.close {
+  all: unset;
+  display: none;
+  position: fixed;
+  z-index: 9999;
+}
 .cartContainer {
+  padding-bottom: 20px;
   width: 500px;
   height: 100%;
   position: fixed;
   right: 0;
   top: 0;
-  background-color: whitesmoke;
+  background-color: $text;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -66,7 +73,7 @@
       height: 60px;
       border-radius: 8px;
       font-size: 20px;
-      background-color: $whitesmoke;
+      background-color: $text;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -81,7 +88,7 @@
       width: 325px;
       height: 340px;
       border-radius: 8px;
-      background-color: $whitesmoke;
+      background-color: $text;
       border: 2px solid $secondary;
       margin-top: 20px;
       overflow-y: scroll;
@@ -98,7 +105,7 @@
     // margin-top: 20px;
     width: 350px;
     height: 75px;
-    background-color: $whitesmoke;
+    background-color: $text;
     font-size: 30px;
     margin-top: 20px;
     border-radius: 8px;
@@ -106,7 +113,7 @@
     &:hover {
       cursor: pointer;
       border: none;
-      color: $whitesmoke;
+      color: $text;
       background-color: $light-blue;
       transition: all 250ms linear;
     }
@@ -208,13 +215,59 @@
   }
 }
 
-@media only screen and (min-width: 300px) and (max-width: 500px) and (min-width: 1000px) {
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+  .background {
+    display: none;
+  }
+  .close {
+    display: block;
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    right: 20px;
+    background-color: $orange;
+    border-radius: 10px;
+    fill: $text;
+  }
+
   .cartContainer {
-    width: 300px;
-    height: 500px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    width: 100% !important;
+    height: 100%;
+    border-radius: 0px;
+    overflow-y: scroll;
+
+    justify-content: flex-start;
+
+    header {
+      margin-top: 20px;
+      h1 {
+        font-size: 30px;
+      }
+      img {
+        width: 100px !important;
+        height: 100px !important;
+      }
+    }
+    .marginTop {
+      margin-top: 0px;
+    }
+    .gBtn {
+      width: 200px !important;
+      height: 50px !important;
+      margin-top: 10px !important;
+    }
+    .favContainer {
+      margin-top: 10px;
+      hr {
+        margin-top: 10px;
+        width: 100%;
+      }
+      .favBlock {
+        height: 250px;
+      }
+    }
+    .buy {
+      width: 300px;
+    }
   }
 }

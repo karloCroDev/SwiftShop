@@ -80,7 +80,7 @@ const Signin = () => {
             <p>
               Don't have an account?
               <span>
-                <Link href="/signup">Sign up!</Link>
+                <Link href="/signup"> Sign up!</Link>
               </span>
             </p>
           </div>

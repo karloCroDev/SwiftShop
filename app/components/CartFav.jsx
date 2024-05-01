@@ -8,6 +8,7 @@ import CartItem from "./CartItem";
 import { FirestoreContext } from "./contextes/FirebaseFirestoreContext";
 import { IoMdArrowDown } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { IoMdClose } from "react-icons/io";
 
 const CartFav = () => {
   //Getting data from state
@@ -18,6 +19,13 @@ const CartFav = () => {
   const { push } = useRouter();
   return (
     <>
+      {closeCart ? (
+        <IoMdClose
+          className={style.close}
+          onClick={() => setCloseCart(false)}
+        />
+      ) : null}
+
       <div
         className={closeCart ? style.background : style.hide}
         onClick={() => {

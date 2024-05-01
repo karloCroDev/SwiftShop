@@ -100,12 +100,17 @@
       textarea {
         height: 150px !important;
       }
+      input,
+      textarea {
+        font-size: 14px;
+        text-indent: 5px !important;
+      }
       button {
         width: 40px !important;
         height: 40px !important;
       }
       svg {
-        width: 20px !important; //I wrote poorly the initial design of footer so this is
+        width: 20px !important; //I wrote poorly the initial design of footer so I have to use f-ing !important everywhere
         height: 20px !important;
       }
     }

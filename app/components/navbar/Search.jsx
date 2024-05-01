@@ -51,7 +51,7 @@ const Search = () => {
                           .split(" ")
                           .map((x, i) => (i <= 5 ? x + " " : null))}
                       </p>
-                      <span>{itm.price}$</span>
+                      <span>{Math.round(itm.price)}$</span>
                     </li>
                   );
                 }

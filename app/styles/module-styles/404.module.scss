@@ -34,3 +34,21 @@
     }
   }
 }
+
+@media screen and (min-width: 300px) and (max-width: 500px) {
+  .container {
+    overflow: hidden;
+    width: 100%;
+    margin-top: 100px;
+
+    .childContainer {
+      width: 350px !important;
+      h2 {
+        font-size: 18px;
+      }
+      button {
+        width: 250px !important;
+      }
+    }
+  }
+}
