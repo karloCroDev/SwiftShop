@@ -1,6 +1,6 @@
 @import "../styleHlp/variables.scss";
 @import "../styleHlp/mixins.scss";
-.serach {
+.search {
   .popover {
     position: absolute; //So it doesn't affect the position
     width: 230px;
@@ -74,6 +74,28 @@
         flex-grow: 1;
         font-size: 12px;
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+  .search {
+    .popover {
+      margin-top: -30px;
+      width: 200px;
+      max-height: 250px;
+    }
+    li {
+      height: 80px;
+      p,
+      span {
+        font-size: 8px !important;
+      }
+    }
+    img {
+      min-width: 70px;
+      max-width: 70px;
+      height: 90px;
     }
   }
 }

@@ -16,6 +16,7 @@ body {
   background-color: $primary-background;
   color: $text;
   width: 100%;
+  height: 100%;
   overflow: hidden;
   overflow-y: scroll;
 }
@@ -179,11 +180,13 @@ a {
 @media only screen and (min-width: 300px) and (max-width: 500px) {
   nav {
     a h1 {
-      font-size: 40px !important;
+      display: none;
+      position: absolute;
     }
-    svg {
-      width: 40px;
-      height: 40px;
+    svg,
+    .sign-out {
+      width: 50px;
+      height: 50px;
     }
     padding: 0px 20px;
     display: flex;

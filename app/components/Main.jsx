@@ -24,7 +24,7 @@ const Main = async () => {
     return category.map((itm, indx) => {
       const arrStr = itm.title.split(" ");
       const title =
-        arrStr.length > 5
+        arrStr.length > 4
           ? arrStr.map((itm, i) => (i > 5 ? null : itm)).join(" ") + "..."
           : arrStr.join(" ");
       return (

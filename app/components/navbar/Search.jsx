@@ -5,7 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { LogicContx } from "../contextes/LogicContext";
 import { useRouter } from "next/navigation";
 
-const Serach = () => {
+const Search = () => {
   const [show, setShow] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const { items } = useContext(LogicContx);
@@ -19,7 +19,7 @@ const Serach = () => {
 
   return (
     <>
-      <div className={style.serach}>
+      <div className={style.search}>
         <CiSearch />
         <input
           onFocus={inputSelected}
@@ -63,4 +63,4 @@ const Serach = () => {
   );
 };
 
-export default Serach;
+export default Search;

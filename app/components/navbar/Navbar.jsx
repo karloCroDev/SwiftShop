@@ -3,7 +3,8 @@ import styles from "../../styles/module-styles/navbar.module.scss";
 import Link from "next/link";
 import SignOutBtn from "./SignOutBtn";
 import NavBtns from "./NavBtns";
-import Serach from "./Serach.jsx";
+import Search from "./Search.jsx";
+import Hamburger from "./Hamburger.jsx";
 
 const navbar = () => {
   //Contexes
@@ -11,12 +12,13 @@ const navbar = () => {
   return (
     <>
       <nav>
-        <Link href="/">
+        <Hamburger />
+        <Link href="/" className={styles.titleContainer}>
           <h1>SwiftCart</h1>
         </Link>
         <ul className={styles.ul}>
           <li>
-            <Serach />
+            <Search />
           </li>
 
           <li>
@@ -36,7 +38,7 @@ const navbar = () => {
           </li>
           <NavBtns />
         </ul>
-        <SignOutBtn />
+        <SignOutBtn className="sign-out" />
       </nav>
     </>
   );

@@ -207,3 +207,14 @@
     zoom: 0.9;
   }
 }
+
+@media only screen and (min-width: 300px) and (max-width: 500px) and (min-width: 1000px) {
+  .cartContainer {
+    width: 300px;
+    height: 500px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
