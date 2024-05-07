@@ -181,10 +181,6 @@ a {
   nav {
     height: 100px;
     top: 50px;
-    a h1 {
-      display: none;
-      position: absolute;
-    }
     svg,
     .sign-out {
       width: 50px;
@@ -193,12 +189,13 @@ a {
     padding: 0px 20px;
     display: flex;
     justify-content: space-between;
+    gap: 10px;
   }
   footer {
     height: 300px;
     margin-top: 50px;
   }
   aside {
-    zoom: 0.7;
+    display: none;
   }
 }

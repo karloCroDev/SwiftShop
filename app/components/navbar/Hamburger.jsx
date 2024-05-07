@@ -5,6 +5,7 @@ import { LogicContx } from "../contextes/LogicContext";
 import { AuthContext } from "../contextes/FirebseAuthContext";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 const Hamburger = () => {
   const { setCloseCart } = useContext(LogicContx);
   const { authUid } = useContext(AuthContext);
@@ -15,9 +16,9 @@ const Hamburger = () => {
       onClick={() => setCloseCart(true)}
     />
   ) : (
-    <h1 className={styles.adapt} onClick={() => push("/")}>
-      SwiftCart
-    </h1>
+    <Link href="/" className={styles.adapt}>
+      <h1>SwiftCart</h1>
+    </Link>
     //I ve done like this because it cuts thorgh with the poorly written global styles
   );
 };

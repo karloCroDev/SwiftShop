@@ -23,10 +23,10 @@ const FirebseAuthContext = ({ children }) => {
   ///Traditional way with no providers
   const { push } = useRouter();
   const images = [
-    "https://i.postimg.cc/SQcxrzJW/meerkat.png",
-    "https://i.postimg.cc/DzccLz1F/giraffe.png",
-    "https://i.postimg.cc/SRHLkYbL/panda.png",
-    "https://i.postimg.cc/mgY3WrXM/cat.png",
+    "https://firebasestorage.googleapis.com/v0/b/swift-cart-6e7e7.appspot.com/o/panda.png?alt=media&token=e02b0aad-0061-4ae9-92fc-ba878ba83c50",
+    "https://firebasestorage.googleapis.com/v0/b/swift-cart-6e7e7.appspot.com/o/meerkat.png?alt=media&token=eb783573-5e01-402d-bb6f-6698538a9307",
+    "https://firebasestorage.googleapis.com/v0/b/swift-cart-6e7e7.appspot.com/o/giraffe.png?alt=media&token=4ab055a3-6c08-44d2-bba5-99aac791728a",
+    "https://firebasestorage.googleapis.com/v0/b/swift-cart-6e7e7.appspot.com/o/cat.png?alt=media&token=e893435f-9dd8-41d6-b5f9-7d7b9e84f58f",
   ];
 
   const [authName, setAuthName] = useState("");

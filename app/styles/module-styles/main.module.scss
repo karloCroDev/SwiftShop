@@ -120,7 +120,13 @@
         }
         &:hover {
           pointer-events: none;
-          background-color: none;
+          background-color: $item-color;
+          &::after {
+            display: none;
+          }
+          &::before {
+            display: none;
+          }
         }
         img {
           height: 300px;
