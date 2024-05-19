@@ -26,10 +26,14 @@ Also this app is mobile responsive, so you can use it freely on any device (see 
  - [Sass (Scss)](https://sass-lang.com/) - is a preprocessor scripting language that is interpreted or compiled into CSS. It allows you to use variables, nested rules, mixins, and functions, making CSS more maintainable and easier to write.
  
 
+
+
 **Getting started**
  - I hosted the app using vercel, so feel free to check it out  👉[Swift shop](https://swift-shop-c31usfp9p-karlos-projects-42cba8bf.vercel.app/)
-
-
+-Clone the app
+```
+git clone "https://github.com/karloCroDev/swift-shop.git"
+```
 ## Getting Started
 
 First, run the development server:
