@@ -19,7 +19,7 @@ Also this app is mobile responsive, so you can use it freely on any device (see 
 
 
 
-**Tech stack and api's**
+**Tech stack **
 
  - List item
  - [Next.js](https://nextjs.org/) - Next.js is a React framework that enables the building of server-side rendered (SSR) and static web applications. It aims to simplify the development of complex web applications by providing a powerful, feature-rich environment with built-in support for many modern web development concepts and best practices.
