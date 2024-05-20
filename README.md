@@ -19,25 +19,20 @@ Also this app is mobile responsive, so you can use it freely on any device (see 
 
 
 
-**Tech stack **
+**Tech stack**
 
  - List item
  - [Next.js](https://nextjs.org/) - Next.js is a React framework that enables the building of server-side rendered (SSR) and static web applications. It aims to simplify the development of complex web applications by providing a powerful, feature-rich environment with built-in support for many modern web development concepts and best practices.
  - [Sass (Scss)](https://sass-lang.com/) - is a preprocessor scripting language that is interpreted or compiled into CSS. It allows you to use variables, nested rules, mixins, and functions, making CSS more maintainable and easier to write.
  
 
-
-
-**Getting started**
+##Getting started**
  - I hosted the app using vercel, so feel free to check it out  👉[Swift shop](https://swift-shop-c31usfp9p-karlos-projects-42cba8bf.vercel.app/)
 -Clone the app
 ```
 git clone "https://github.com/karloCroDev/swift-shop.git"
 ```
-## Getting Started
-
 First, run the development server:
-
 ```bash
 npm run dev
 # or
@@ -55,8 +50,5 @@ npm i
 ```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 
