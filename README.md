@@ -21,7 +21,6 @@ Also this app is mobile responsive, so you can use it freely on any device (see 
 
 **Tech stack**
 
- - List item
  - [Next.js](https://nextjs.org/) - Next.js is a React framework that enables the building of server-side rendered (SSR) and static web applications. It aims to simplify the development of complex web applications by providing a powerful, feature-rich environment with built-in support for many modern web development concepts and best practices.
  - [Sass (Scss)](https://sass-lang.com/) - is a preprocessor scripting language that is interpreted or compiled into CSS. It allows you to use variables, nested rules, mixins, and functions, making CSS more maintainable and easier to write.
  
