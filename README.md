@@ -26,7 +26,7 @@ Also this app is mobile responsive, so you can use it freely on any device (see 
  
 
 **Getting started**
- - I hosted the app using vercel, so feel free to check it out  👉[Swift shop](https://swift-shop-c31usfp9p-karlos-projects-42cba8bf.vercel.app/)
+ - I hosted the app using vercel, so feel free to check it out  👉[Swift shop](https://weather-app-eta-fawn.vercel.app/)
 -Clone the app
 ```
 git clone "https://github.com/karloCroDev/swift-shop.git"
